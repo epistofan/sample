@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-<BorderPane prefHeight="399.0" prefWidth="639.0" style="-fx-border-color: #d9d9d9;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<BorderPane prefHeight="399.0" prefWidth="639.0" style="-fx-border-color: #d9d9d9;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Logic.Controller">
     
    <top>
       <AnchorPane prefHeight="27.0" prefWidth="639.0" BorderPane.alignment="CENTER">
@@ -57,7 +57,7 @@
    </top>
     <right>
 
-        <fx:include fx:id="dialog" source="dialog.fxml"/>
+
 
     </right>
    <left>

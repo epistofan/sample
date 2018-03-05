@@ -5,25 +5,19 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.SceneAntialiasing;
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-
-import java.awt.event.ActionEvent;
+import sample.Logic.Controller;
+import sample.Logic.db_conn_control;
 
 public class Main extends Application {
 
-    double xOffset = 0.0;
-    double yOffset = 0.0;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("fxml_views/Main_window.fxml"));
             primaryStage.initStyle(StageStyle.UNDECORATED);
 
             primaryStage.setScene(new Scene(root));
@@ -31,39 +25,11 @@ public class Main extends Application {
 
             primaryStage.show();
 
-            //MAKE WINDOW DRAG
-/*
-        root.setOnMousePressed(e -> {
-                   // System.out.println("test");
 
+            System.out.println("start");
+           // Controller main = new Controller();
+           //db_conn_control dbc = new db_conn_control(main);
 
-
-                    primaryStage.getX();
-                    primaryStage.getY();
-                    e.getScreenX();
-                    e.getScreenY();
-                    xOffset=e.getScreenX()-primaryStage.getX();
-
-                    yOffset=e.getScreenY()- primaryStage.getY();
-
-                }
-
-
-        );
-
-
-        root.setOnMouseDragged(ev -> {
-
-
-
-
-
-           primaryStage.setX(ev.getScreenX()- xOffset);
-          primaryStage.setY(ev.getScreenY()- yOffset);
-
-
-        });
-*/
             Timeline timeline = new Timeline();
 
         }catch(Exception e){
@@ -75,5 +41,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
     }
 }

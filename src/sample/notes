@@ -1,34 +1,8 @@
-package sample;
-
-
-import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Cursor;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import sample.Controller;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.*;
-
-/**
- * Created by Igor on 07.08.2017.
- */
-public class conn {
-    @FXML
-    public Controller main;
+@FXML
+    void conn1(String user, String pass, String db_name) {
 
 
 
-
-        void conn1 (String user, String pass, String db_name){
 
 
             // Create a variable for the connection string.
@@ -45,13 +19,11 @@ public class conn {
 
                 // Establish the connection.
                 System.out.println("before conn");
-
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
                 con = DriverManager.getConnection(db_name, user, pass);
 
                 System.out.println("after conn");
-
                 // Create and execute an SQL statement that returns some data.
                 //  String SQL = "SELECT TOP 10 * FROM Person.Contact";
                 //  stmt = con.createStatement();
@@ -68,7 +40,8 @@ public class conn {
                 //e.printStackTrace();
 
                 System.out.println("cant connect, please check");
-
+                conn_status.setText("cant connect, please check");
+                login_button.setCursor(Cursor.DEFAULT);
 
 
             } finally {
@@ -85,14 +58,11 @@ public class conn {
                     con.close();
 
                 } catch (Exception e) {
+
                 }
             }
 
-        }
-        @FXML
-    public void init(Controller mainController) {
-        main = mainController;
-    }
-    }
 
 
+
+    }

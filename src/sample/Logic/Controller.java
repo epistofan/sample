@@ -1,4 +1,4 @@
-package sample;
+package sample.Logic;
 
 
 
@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
-public class Controller extends Thread{
+public class Controller {
     double movewidth;
     double width;
     double testx;
@@ -57,7 +57,8 @@ public class Controller extends Thread{
     @FXML
     private Button refresh;
 
-
+  //  @FXML
+  // public Controller main;
 
 
 
@@ -72,40 +73,32 @@ public class Controller extends Thread{
     public Label moveLabel;
     @FXML
     public Button about;
-    @FXML
-    public db_conn_control dialogController;
+  //  @FXML
+   // public db_conn_control dialogController;
 
     @FXML
     ObservableList<Person> list = FXCollections.observableArrayList();
 
 
 
-  /*  @FXML
-    private void initialize() {
 
-        dialogController.injectController(this);
-
-
-
-
-    }
-*/
     @FXML
     void conn(ActionEvent event) throws Exception {
-
+        System.out.println("conn");
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("db_conn.fxml"));
-            Parent root1 = fxmlLoader.load();
+            Parent root1 = FXMLLoader.load(getClass().getResource("fxml_views/db_conn.fxml"));
+          //  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_views/db_conn.fxml"));
+           // Parent root1 = fxmlLoader.load();
 
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             stage.initStyle(StageStyle.TRANSPARENT);
             Scene scene = new Scene(root1, 500, 300);
 //jomajooooooooo
-          db_conn_control controller = fxmlLoader.getController();
+        //  db_conn_control controller = fxmlLoader.getController();
 
-         controller.init(this);
+        // controller.init(this);
 
             //
             stage.setScene(scene);
@@ -198,7 +191,7 @@ ccc.setOnMouseDragged(e->{
     @FXML
     void print_view(ActionEvent event) throws Exception {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ttest_canvas.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_views/ttest_canvas.fxml"));
             Parent root1 = fxmlLoader.load();
 
             Stage stage = new Stage();
@@ -289,7 +282,9 @@ if (w ==true) {
     }
     @FXML
     void about(ActionEvent event) {
-
+        Controller main = new Controller();
+       // db_conn_control dbc = new db_conn_control(main);
+        //test1.setText(dbc.govneco());
 /*
                     list.add(new Person("gavno", "zhopin", "2328634354824"));
                     list.add(new Person("gavno2", "sukin", "2542543"));
@@ -324,9 +319,9 @@ table.setItems(list);
         table.getColumns().setAll(column1, column2, column3);
     }
     @FXML
-    void statement(ActionEvent event) throws Exception {
+    void statement() {
         System.out.println("rfrrfrfr");
-        dialogController.statement();
+        //dialogController.statement();
 
 
 

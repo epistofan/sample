@@ -1,4 +1,4 @@
-package sample;
+package sample.Logic;
 
 /**
  * Created by Igor on 17.08.2017.

@@ -1,8 +1,6 @@
-package sample;
+package sample.Logic;
 
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -10,14 +8,12 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 import javafx.stage.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 /**
  * Created by Igor on 09.08.2017.
@@ -42,32 +38,44 @@ public class db_conn_control  {
     @FXML
     private Button refresh;
 
+    String ea;
     int i;
 
-    @FXML
-   public Controller main;
+  //@FXML
+  //public Controller controller;
 
+  //  public db_conn_control(Controller main) {
+   //    this.controller = main;
+
+   //}
 
     Connection con=null;
 
     Statement stmt;
 
     ResultSet rs;
-
-
+    String result;
+    Main_window_controller controller = new Main_window_controller();
     @FXML
     void exit() {
 
 
 
     }
+   // @FXML
+    //public String govneco(){
+    //  controller.statement();
 
+     //   System.out.println("ABC");
+     //   ea="pizdauska";
+       // return ea;
+    //}
     @FXML
-    void login(ActionEvent event) {
+    String login(ActionEvent event) {
 
         System.out.println("login");
         login_button.setCursor(Cursor.WAIT);
-       main.test1.setText("pizdauskas");
+       //controller.test1.setText("pizdauskas");
 
         // conn c = new conn();
         String user = username.getText();
@@ -113,13 +121,14 @@ public class db_conn_control  {
         }
 
 
+        return result;
     }
 
-   @FXML
-   public void init(Controller mainController) {
+   // @FXML
+   // public void init(Controller mainController) {
 
-      main = mainController;
-   }
+           // main = mainController;
+    //}
 
     public void conn1(String user, String pass, String db_name) {
 
@@ -161,6 +170,7 @@ public class db_conn_control  {
             // while (rs.next()) {
             // System.out.println(rs.getString(4) + " " + rs.getString(6));
             // }
+            this.statement();
         }
 
         // Handle any errors that may have occurred.
@@ -168,16 +178,16 @@ public class db_conn_control  {
             e.printStackTrace();
 
             System.out.println("cant connect, please check");
-           main.test1.setText("govneco");
+           //controller.test1.setText("govneco");
 
 
         } finally {
             if (rs != null) try {
-                rs.close();
+               // rs.close();
             } catch (Exception e) {
             }
             if (stmt != null) try {
-                stmt.close();
+                //stmt.close();
             } catch (Exception e) {
             }
             if (con != null) try {
@@ -217,7 +227,8 @@ public class db_conn_control  {
                        String test = rs.getString("firstname");
                 String lastname = rs.getString("lastname");
                        String num = rs.getString(String.valueOf("numurs"));
-               main.list.add(new Person(test, lastname, num));
+
+               controller.list.add(new Person(test, lastname, num));
 
                 i++;
 
@@ -225,7 +236,7 @@ public class db_conn_control  {
 
             }
         System.out.println(i);
-            main.moveLabel.setText(String.valueOf(i));
+           // controller.moveLabel.setText(String.valueOf(i));
 
 
 
