@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.*;
+import sample.B_Logic.Get_Data;
 import sample.Person;
 
 import java.sql.Connection;
@@ -35,11 +36,9 @@ public class db_conn_control  {
     @FXML
     public Tooltip w;
     @FXML
-    public Label conn_status;
-    @FXML
     private Button refresh;
 
-    String ea;
+
     int i;
 
   //@FXML
@@ -52,9 +51,9 @@ public class db_conn_control  {
 
     Connection con=null;
     @FXML
-Connection connection;
+    Connection connection;
     Statement stmt;
-
+    Get_Data getData = new Get_Data();
     ResultSet rs;
     String result;
 
@@ -62,38 +61,23 @@ Connection connection;
     @FXML
     void exit() {
 
-
-
     }
-   // @FXML
-    //public String govneco(){
-    //  controller.statement();
 
-     //   System.out.println("ABC");
-     //   ea="pizdauska";
-       // return ea;
-    //}
     @FXML
     String login(ActionEvent event) {
 
         System.out.println("login");
         login_button.setCursor(Cursor.WAIT);
-       //controller.test1.setText("pizdauskas");
 
-        // conn c = new conn();
-        String user = username.getText();
-        String pass = password.getText();
         if (db_s_name.getText().trim().isEmpty()) {
-            System.out.println("nizja");
-
-            System.out.println("gavs1");
+            System.out.println("empty");
 
             Stage window = new Stage();
             window.initStyle(StageStyle.UNDECORATED);
             window.initModality(Modality.APPLICATION_MODAL);
-            //
 
 
+            //popup position
             window.setX(((((Button) event.getSource()).getScene().getWindow()).getX()) + 400);
             window.setY(((((Button) event.getSource()).getScene().getWindow()).getY()) + 70);
 
@@ -114,11 +98,12 @@ Connection connection;
             scene.setOnMouseMoved(e -> window.close());
 
 
-            System.out.println("gavs2");
         } else {
+            String user = username.getText();
+            String pass = password.getText();
             String db_name = "jdbc:sqlserver://" + db_s_name.getText();
 
-            this.conn1(user, pass, db_name);
+            getData.makeConnection(user, pass, db_name);
 
 
         }
@@ -127,140 +112,10 @@ Connection connection;
         return result;
     }
 
-   // @FXML
-   // public void init(Controller mainController) {
-
-           // main = mainController;
-    //}
-
-    public void conn1(String user, String pass, String db_name) {
-
-
-        // Create a variable for the connection string.
-        // String connectionUrl = "jdbc:sqlserver://IGORSWNOTE\\sqlexpress";
-        // String user = "sa";
-        // String pass = "Admin18";
-        // Declare the JDBC objects.
-        //Connection con = null;
-       // Statement stmt = null;
-        //ResultSet rs = null;
-
-        try {
-
-
-            // Establish the connection.
-            System.out.println("before conn");
-
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
-            con = DriverManager.getConnection(db_name, user, pass);
-            controller.connection=con;
-            System.out.println("after conn");
-            System.out.println(controller.connection);
-//this.statement();
-            // Create and execute an SQL statement that returns some data.
-            //  String SQL = "SELECT TOP 10 * FROM Person.Contact";
-            //  stmt = con.createStatement();
-            //  rs = stmt.executeQuery(SQL);
-
-            // Iterate through the data in the result set and display it.
-            // while (rs.next()) {
-            //     System.out.println(rs.getString(4) + " " + rs.getString(6));
-            // }
-            //String SQL = "SELECT TOP 10 * FROM Person.Contact";
-            // stmt = con.createStatement();
-            // rs = stmt.executeQuery(SQL);
-            // Iterate through the data in the result set and display it.
-            // while (rs.next()) {
-            // System.out.println(rs.getString(4) + " " + rs.getString(6));
-            // }
-
-        }
-
-        // Handle any errors that may have occurred.
-        catch (Exception e) {
-            e.printStackTrace();
-
-            System.out.println("cant connect, please check");
-           //controller.test1.setText("govneco");
-
-
-        } finally {
-            if (rs != null) try {
-               // rs.close();
-            } catch (Exception e) {
-            }
-            if (stmt != null) try {
-                //stmt.close();
-            } catch (Exception e) {
-            }
-            if (con != null) try {
-                // get a handle to the stage
-                Stage stage = (Stage) b_exit.getScene().getWindow();
-                // do what you have to do
-                stage.close();
-                // con.close();
-
-            } catch (Exception e) {
-            }
-        }
-    }
-
-   /* public Connection getCon() {
-        return con;
-
-    }*/
-
 
     public void statement(Connection connection) throws Exception {
-
-       // Statement stmt;
-        //ResultSet rs;
-        System.out.println("brrrrrrrrrrrrrrrrr");
-        // Create and execute an SQL statement that returns some data.
-        try {
-            String SQL = "SELECT TOP 10 * FROM [test].[dbo].[table]";
-            System.out.println(connection);
-            stmt = connection.createStatement();
-            System.out.println("brrrrrrrrrrrrrrrr23333322222222r");
-            rs = stmt.executeQuery(SQL);
-            System.out.println("brrrrrrrrrrrrrrrr222222222r");
-            // Iterate through the data in the result set and display it.
-
-
-
-            while (rs.next()){
-                       String test = rs.getString("firstname");
-                String lastname = rs.getString("lastname");
-                       String num = rs.getString(String.valueOf("numurs"));
-
-               controller.list.add(new Person(test, lastname, num));
-
-                i++;
-
-                System.out.println(test+" "+num);
-
-            }
-        System.out.println(i);
-           // controller.moveLabel.setText(String.valueOf(i));
-
-
-
-
-
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("govno");
-        }
+                getData.getData();
 
     }
-    /*@FXML
-    public void injectController(Controller controller){
-        System.out.println("inject");
-        this.main=controller;
-    }
-    */
+
 }
