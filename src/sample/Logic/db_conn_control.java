@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.*;
+import sample.Person;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -50,11 +51,13 @@ public class db_conn_control  {
    //}
 
     Connection con=null;
-
+    @FXML
+Connection connection;
     Statement stmt;
 
     ResultSet rs;
     String result;
+
     Main_window_controller controller = new Main_window_controller();
     @FXML
     void exit() {
@@ -114,7 +117,7 @@ public class db_conn_control  {
             System.out.println("gavs2");
         } else {
             String db_name = "jdbc:sqlserver://" + db_s_name.getText();
-            conn c = new conn();
+
             this.conn1(user, pass, db_name);
 
 
@@ -151,8 +154,9 @@ public class db_conn_control  {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
             con = DriverManager.getConnection(db_name, user, pass);
-
+            controller.connection=con;
             System.out.println("after conn");
+            System.out.println(controller.connection);
 //this.statement();
             // Create and execute an SQL statement that returns some data.
             //  String SQL = "SELECT TOP 10 * FROM Person.Contact";
@@ -170,7 +174,7 @@ public class db_conn_control  {
             // while (rs.next()) {
             // System.out.println(rs.getString(4) + " " + rs.getString(6));
             // }
-            this.statement();
+
         }
 
         // Handle any errors that may have occurred.
@@ -208,14 +212,16 @@ public class db_conn_control  {
     }*/
 
 
-    public void statement() throws Exception {
+    public void statement(Connection connection) throws Exception {
+
        // Statement stmt;
         //ResultSet rs;
         System.out.println("brrrrrrrrrrrrrrrrr");
         // Create and execute an SQL statement that returns some data.
         try {
             String SQL = "SELECT TOP 10 * FROM [test].[dbo].[table]";
-            stmt = con.createStatement();
+            System.out.println(connection);
+            stmt = connection.createStatement();
             System.out.println("brrrrrrrrrrrrrrrr23333322222222r");
             rs = stmt.executeQuery(SQL);
             System.out.println("brrrrrrrrrrrrrrrr222222222r");

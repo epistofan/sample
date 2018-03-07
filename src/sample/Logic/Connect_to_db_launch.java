@@ -3,13 +3,14 @@ package sample.Logic;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
 public class Connect_to_db_launch {
    // @FXML
-    void conn() {
+    boolean conn() {
 
     System.out.println("conn");
 
@@ -23,9 +24,10 @@ public class Connect_to_db_launch {
         stage.initStyle(StageStyle.TRANSPARENT);
         Scene scene = new Scene(root, 500, 300);
 
-        //db_conn_control controller = fxmlLoader.getController();
+      //      FXMLLoader fxmlLoader = new FXMLLoader();
+     //   db_conn_control controller = fxmlLoader.getController();
 
-        //controller.init(this);
+        //controller.init(Main_window_controller);
 
 
         stage.setScene(scene);
@@ -38,5 +40,6 @@ public class Connect_to_db_launch {
 
     }
 
-}
+        return true;
+    }
 }

@@ -10,13 +10,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.Person;
+
+
+import java.sql.Connection;
 
 
 public class Main_window_controller {
+
 
     double width;
     double testx;
@@ -53,15 +59,17 @@ public class Main_window_controller {
     @FXML
     private Button refresh;
 
-  //  @FXML
-  // public Controller main;
+  //@FXML
+  //public Controller main;
+    public Connection connection;
 
-
+    @FXML
+    private AnchorPane rightPane;
 
     @FXML
     public ListView<String> test_v;
     double a;
-@FXML
+    @FXML
     public Circle ccc;
     @FXML
     public Rectangle move;
@@ -69,24 +77,24 @@ public class Main_window_controller {
     public Label moveLabel;
     @FXML
     public Button about;
-  //  @FXML
-   // public db_conn_control dialogController;
 
-    @FXML
+
+
     ObservableList<Person> list = FXCollections.observableArrayList();
+
 
     @FXML
     void conn(){
-        Connect_to_db_launch dbc= new Connect_to_db_launch();
-        dbc.conn();
+        Connect_to_db_launch dbl = new Connect_to_db_launch();
+
+        boolean returnValue=dbl.conn();
+        System.out.println(returnValue);
     }
-
-
 
     @FXML
     //window resize
     void but_m(){
-System.out.println("c");
+            System.out.println("resizeing...");
 
         ccc.setOnMousePressed(e -> {
             X=e.getScreenX();
@@ -95,36 +103,34 @@ System.out.println("c");
 
 
 
-       testx= ((Circle) e.getSource()).getScene().getWindow().getX();
+            testx= ((Circle) e.getSource()).getScene().getWindow().getX();
             testy= ((Circle) e.getSource()).getScene().getWindow().getY();
-          width =  ((Circle) e.getSource()).getScene().getWindow().getWidth();
-
+            width =  ((Circle) e.getSource()).getScene().getWindow().getWidth();
 
     });
-ccc.setOnMouseDragged(e->{
-    X=e.getScreenX();
-    Y= e.getScreenY();
-    xOff=X-testx;
-    yOff=Y-testy;
-    System.out.println(xOff+"eto raznica");
-    width =  ((Circle) e.getSource()).getScene().getWindow().getWidth();
-    ((Circle) e.getSource()).getScene().getWindow().setWidth(xOff);
-    ((Circle) e.getSource()).getScene().getWindow().setHeight(yOff);
-    if (xOff<400){
-        System.out.println("stop");
-        ((Circle) e.getSource()).getScene().getWindow().setWidth(400);
+        ccc.setOnMouseDragged(e->{
+                X=e.getScreenX();
+                Y= e.getScreenY();
+                xOff=X-testx;
+                yOff=Y-testy;
+                System.out.println(xOff+"eto raznica");
+                width =  ((Circle) e.getSource()).getScene().getWindow().getWidth();
+                ((Circle) e.getSource()).getScene().getWindow().setWidth(xOff);
+                ((Circle) e.getSource()).getScene().getWindow().setHeight(yOff);
+            if (xOff<400){
+                System.out.println("stop");
+                ((Circle) e.getSource()).getScene().getWindow().setWidth(400);
 
-    }else if (yOff<400){
-        ((Circle) e.getSource()).getScene().getWindow().setHeight(400);
+            }else if (yOff<400){
+                ((Circle) e.getSource()).getScene().getWindow().setHeight(400);
+            }
+            System.out.println(testx+"drag");
+
+            move.setWidth((xOff-350));
+    });
+
+
     }
-    System.out.println(testx+"drag");
-
-
-    move.setWidth((xOff-350));
-});
-
-
-}
     @FXML
         //window move
     void but_move(){
@@ -205,10 +211,6 @@ ccc.setOnMouseDragged(e->{
             e.printStackTrace();
 
 
-            //  conn c = new conn();
-
-            // c.conn();
-
         }
 
 
@@ -275,7 +277,7 @@ if (w ==true) {
         column2.setCellValueFactory(lastNameProperty);
         column3.setCellValueFactory(phoneProperty);
 
-table.setItems(list);
+        table.setItems(list);
 
 
 
@@ -286,13 +288,16 @@ table.setItems(list);
     }
     @FXML
     void statement() throws Exception {
-        System.out.println("rfrrfrfr");
-        db_conn_control dbc = new db_conn_control();
+        System.out.println("statement....");
+        System.out.println(connection);
+
+
         try {
-            dbc.statement();
-        } catch (Exception e) {
+            //db_conn_control dbc = new db_conn_control();
+            //dbc.statement(connection);
+            } catch (Exception e) {
             e.printStackTrace();
-        }
+            }
         //dialogController.statement();
 
 
