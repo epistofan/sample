@@ -94,7 +94,7 @@ public class Main_window_controller {
     @FXML
     //window resize
     void but_m(){
-            System.out.println("resizeing...");
+            System.out.println("resizing...");
 
         ccc.setOnMousePressed(e -> {
             X=e.getScreenX();

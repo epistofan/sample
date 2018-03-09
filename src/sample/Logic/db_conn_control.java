@@ -78,8 +78,8 @@ public class db_conn_control  {
 
 
             //popup position
-            window.setX(((((Button) event.getSource()).getScene().getWindow()).getX()) + 400);
-            window.setY(((((Button) event.getSource()).getScene().getWindow()).getY()) + 70);
+            //window.setX(((((Button) event.getSource()).getScene().getWindow()).getX()) + 400);
+            //window.setY(((((Button) event.getSource()).getScene().getWindow()).getY()) + 70);
 
             Label esj = new Label("cannot be empty");
 
@@ -94,6 +94,7 @@ public class db_conn_control  {
 
             window.setScene(scene);
             window.show();
+
 
             scene.setOnMouseMoved(e -> window.close());
 
