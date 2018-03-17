@@ -8,8 +8,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class Get_Data {
-
+public class GetData {
+        String statementText;
         Connection connection;
         String user;
         String pass;
@@ -18,7 +18,7 @@ public class Get_Data {
         ResultSet resultSet;
         Integer i;
 
-        public void makeConnection(String user, String pass, String db_name) {
+        public Connection makeConnection(String user, String pass, String db_name) {
 
 
             try {
@@ -27,7 +27,7 @@ public class Get_Data {
             System.out.println("before connection");
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
+                System.out.println("class");
             connection = DriverManager.getConnection(db_name, user, pass);
 
             System.out.println("after connection");
@@ -43,9 +43,10 @@ public class Get_Data {
             //controller.test1.setText("govneco");
 
             }
+            return connection;
         }
 
-        public void getData(){
+        public void getData(String statementText, Connection connection){
 
                 System.out.println("getting data");
                 // Create and execute an SQL statement that returns some data.

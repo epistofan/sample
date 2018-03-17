@@ -15,13 +15,14 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.B_Logic.AddPerson;
 import sample.Person;
 
 
 import java.sql.Connection;
 
 
-public class Main_window_controller {
+public class MainWindowController {
 
 
     double width;
@@ -34,10 +35,12 @@ public class Main_window_controller {
     double xOffset = 0.0;
     double yOffset = 0.0;
     boolean w;
-    @FXML
-    private MenuItem print_view_buttonm;
+
+    AddPerson addPerson = new AddPerson();
     @FXML
     private Button max_button;
+    @FXML
+    private Button addPersonButton;
     @FXML
     private Button button_min;
     @FXML
@@ -51,7 +54,7 @@ public class Main_window_controller {
     @FXML
     public Button print_view_button;
     @FXML
-    public TableView<Person> table;
+    public TableView<Person> tableOfPersons;
     @FXML
     public Label test1;
     @FXML
@@ -59,86 +62,95 @@ public class Main_window_controller {
     @FXML
     private Button refresh;
 
-  //@FXML
-  //public Controller main;
     public Connection connection;
-
     @FXML
-    private AnchorPane rightPane;
-
-    @FXML
-    public ListView<String> test_v;
-    double a;
-    @FXML
-    public Circle ccc;
+    public Circle windowResizeCircle;
     @FXML
     public Rectangle move;
     @FXML
     public Label moveLabel;
     @FXML
     public Button about;
-
-
+    @FXML
+    private TextField firstNameField;
+    @FXML
+    private TextField phoneField;
+    @FXML
+    private TextField lastNameField;
+    @FXML
+    private Label lastNameLabel;
+    @FXML
+    private Label phoneLabel;
+    @FXML
+    private Label firstNameLabel;
+    @FXML
+    private Button removePersonButton;
 
     ObservableList<Person> list = FXCollections.observableArrayList();
 
+    @FXML
+    void addPerson() {
+        String returned =(
+        addPerson.addPerson(lastNameField.getText(),
+                            firstNameField.getText(),
+                            phoneField.getText()));
+
+        moveLabel.setText(returned);
+        lastNameField.clear();
+
+
+    }
 
     @FXML
-    void conn(){
-        Connect_to_db_launch dbl = new Connect_to_db_launch();
+    void removePerson(ActionEvent event) {
 
-        boolean returnValue=dbl.conn();
-        System.out.println(returnValue);
     }
 
     @FXML
     //window resize
-    void but_m(){
+    void windowResize(){
+        try {
             System.out.println("resizing...");
+            windowResizeCircle.setOnMousePressed(e -> {
+                X = e.getScreenX();
+                Y = e.getScreenY();
+                System.out.println(X + Y + "test gov");
 
-        ccc.setOnMousePressed(e -> {
-            X=e.getScreenX();
-            Y= e.getScreenY();
-            System.out.println(X+Y+"test gov");
+                testx = ((Circle) e.getSource()).getScene().getWindow().getX();
+                testy = ((Circle) e.getSource()).getScene().getWindow().getY();
+                width = ((Circle) e.getSource()).getScene().getWindow().getWidth();
 
-
-
-            testx= ((Circle) e.getSource()).getScene().getWindow().getX();
-            testy= ((Circle) e.getSource()).getScene().getWindow().getY();
-            width =  ((Circle) e.getSource()).getScene().getWindow().getWidth();
-
-    });
-        ccc.setOnMouseDragged(e->{
-                X=e.getScreenX();
-                Y= e.getScreenY();
-                xOff=X-testx;
-                yOff=Y-testy;
-                System.out.println(xOff+"eto raznica");
-                width =  ((Circle) e.getSource()).getScene().getWindow().getWidth();
+            });
+            windowResizeCircle.setOnMouseDragged(e -> {
+                X = e.getScreenX();
+                Y = e.getScreenY();
+                xOff = X - testx;
+                yOff = Y - testy;
+                System.out.println(xOff + "eto raznica");
+                width = ((Circle) e.getSource()).getScene().getWindow().getWidth();
                 ((Circle) e.getSource()).getScene().getWindow().setWidth(xOff);
                 ((Circle) e.getSource()).getScene().getWindow().setHeight(yOff);
-            if (xOff<400){
-                System.out.println("stop");
-                ((Circle) e.getSource()).getScene().getWindow().setWidth(400);
+                if (xOff < 400) {
+                    System.out.println("stop");
+                    ((Circle) e.getSource()).getScene().getWindow().setWidth(400);
 
-            }else if (yOff<400){
-                ((Circle) e.getSource()).getScene().getWindow().setHeight(400);
-            }
-            System.out.println(testx+"drag");
+                } else if (yOff < 400) {
+                    ((Circle) e.getSource()).getScene().getWindow().setHeight(400);
+                }
+                System.out.println(testx + "drag");
 
-            move.setWidth((xOff-350));
-    });
-
+                move.setWidth((xOff - 350));
+            });
+        }catch (Exception e){e.printStackTrace();
+        }
 
     }
     @FXML
         //window move
     void but_move(){
         move.setOnMousePressed(e->{
-
-
             xOff=(e.getScreenX()-((Rectangle) e.getSource()).getScene().getWindow().getX());
-           yOff=(e.getScreenY()-((Rectangle) e.getSource()).getScene().getWindow().getY());
+            yOff=(e.getScreenY()-((Rectangle) e.getSource()).getScene().getWindow().getY());
 
         });
 
@@ -154,7 +166,6 @@ public class Main_window_controller {
 
         });
 
-
     }
     @FXML
     void but_close(ActionEvent event) {
@@ -163,7 +174,7 @@ public class Main_window_controller {
     @FXML
     void print_view(ActionEvent event) throws Exception {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_views/Main_window.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_views/MainWindow.fxml"));
             Parent root1 = fxmlLoader.load();
 
             Stage stage = new Stage();
@@ -242,23 +253,18 @@ if (w ==true) {
     move.setWidth((((Stage) ((Button) event.getSource()).getScene().getWindow()).getWidth())-350);
 }
     }
-    @FXML
-    void stat(ActionEvent event) {
 
-       // dialogdbcon.statement();
-
-    }
     @FXML
     void about(ActionEvent event) {
       //  Main_window_controller main = new Main_window_controller();
        // db_conn_control dbc = new db_conn_control(main);
        // test1.setText(dbc.govneco());
-/*
+
                     list.add(new Person("gavno", "zhopin", "2328634354824"));
                     list.add(new Person("gavno2", "sukin", "2542543"));
                     list.add(new Person("pidr", "lohan", "784451212543"));
                     list.add(new Person("gunr", "alektrik", "75454545454545454545443"));
-*/
+
 
         TableColumn<Person, String> column1 = new TableColumn<>("firstname");
         TableColumn<Person, String> column2 = new TableColumn<>("lastname");
@@ -276,20 +282,23 @@ if (w ==true) {
         column1.setCellValueFactory(firstNameProperty);
         column2.setCellValueFactory(lastNameProperty);
         column3.setCellValueFactory(phoneProperty);
+        tableOfPersons.setEditable(true);
 
-        table.setItems(list);
+
+        tableOfPersons.setItems(list);
 
 
 
             System.out.println("esasss");
 
 
-        table.getColumns().setAll(column1, column2, column3);
+        tableOfPersons.getColumns().setAll(column1, column2, column3);
     }
     @FXML
     void statement() throws Exception {
+        list.add(new Person("andrew", "coooll", "75454545454545454545443"));
         System.out.println("statement....");
-        System.out.println(connection);
+       // System.out.println(connection);
 
 
         try {

@@ -18,11 +18,12 @@ public class Main extends Application {
 
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("fxml_views/Main_window.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("fxml_views/MainWindow.fxml"));
             primaryStage.initStyle(StageStyle.UNDECORATED);
 
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(true);
+           // primaryStage.setMaximized(true);
 
             primaryStage.show();
 

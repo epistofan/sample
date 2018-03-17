@@ -23,7 +23,7 @@ import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
 
 
-public class print_control {
+public class PrintController {
     @FXML
     private TableView<String> table;
     @FXML
