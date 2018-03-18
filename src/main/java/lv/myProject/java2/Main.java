@@ -20,7 +20,7 @@ public class Main extends Application {
         try {
            // Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-            Parent root = FXMLLoader.load(getClass().getResource("fxmlViews/MainWindow.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxmlViews/MainWindow.fxml"));
             primaryStage.initStyle(StageStyle.UNDECORATED);
 
             primaryStage.setScene(new Scene(root));
