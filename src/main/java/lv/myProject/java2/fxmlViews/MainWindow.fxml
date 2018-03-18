@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+
+<BorderPane prefHeight="399.0" prefWidth="639.0" style="-fx-border-color: #d9d9d9;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Logic.MainWindowController">
+
+    <top>
+        <AnchorPane prefHeight="27.0" prefWidth="639.0" BorderPane.alignment="CENTER">
+            <children>
+                <GridPane layoutX="445.0" layoutY="-1.0" prefHeight="30.0" prefWidth="193.0" AnchorPane.rightAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Button fx:id="but_close" mnemonicParsing="false" onAction="#but_close" prefHeight="25.0" prefWidth="63.0" text="X" GridPane.columnIndex="2" />
+                        <Button fx:id="max_button" mnemonicParsing="false" onAction="#maximize" prefHeight="26.0" prefWidth="61.0" text="max" GridPane.columnIndex="1" />
+                        <Button fx:id="button_min" mnemonicParsing="false" onAction="#minimize" prefHeight="25.0" prefWidth="60.0" text="min" />
+                    </children>
+                </GridPane>
+                <GridPane layoutY="1.0" prefHeight="30.0" prefWidth="165.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.0" minWidth="10.0" prefWidth="81.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Button fx:id="about" mnemonicParsing="false" onAction="#about" prefHeight="25.0" prefWidth="82.0" text="?" />
+                    </children>
+                </GridPane>
+                <Rectangle fx:id="move" arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="25.0" layoutX="95.0" layoutY="3.0" onMouseEntered="#but_move" stroke="#fffdfd" strokeType="INSIDE" width="344.0">
+                    <cursor>
+                        <Cursor fx:constant="MOVE" />
+                    </cursor>
+                </Rectangle>
+            </children>
+        </AnchorPane>
+    </top>
+    <right>
+
+
+
+    </right>
+    <left>
+        <Label fx:id="test1" prefHeight="17.0" prefWidth="94.0" text="Label" BorderPane.alignment="CENTER" />
+    </left>
+    <bottom>
+        <GridPane BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Circle fx:id="windowResizeCircle" fill="#bcbcbc" onMouseEntered="#windowResize" radius="8.0" stroke="#aeaeae" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
+                <Button fx:id="statm" mnemonicParsing="false" onAction="#print_view" text="Button" />
+                <Label fx:id="moveLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseEntered="#but_move" prefHeight="17.0" prefWidth="177.0" text="Label" GridPane.columnIndex="2" />
+                <Button fx:id="refresh" mnemonicParsing="false" onAction="#statement" text="Refresh" GridPane.columnIndex="1" />
+
+            </children>
+        </GridPane>
+    </bottom>
+   <center>
+      <SplitPane dividerPositions="0.66728280961183" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                    <TableView fx:id="table" editable="true" layoutX="-5.0" maxWidth="-Infinity" prefHeight="341.0" prefWidth="354.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <TabPane maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="334.0" prefWidth="177.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Person management">
+                     <content>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="202.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="202.0" minHeight="0.0" prefHeight="65.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="268.0" minHeight="10.0" prefHeight="134.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <TextField fx:id="firstNameField" prefHeight="10.0" prefWidth="111.0" />
+                              <TextField fx:id="lastNameField" GridPane.rowIndex="1" />
+                              <TextField fx:id="phoneField" GridPane.rowIndex="2" />
+                              <Label fx:id="firstNameLabel" text="FirstName" GridPane.columnIndex="1">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="lastNameLabel" text="LastName" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="phoneLabel" text="Phone number" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                              <Button fx:id="addPersonButton" mnemonicParsing="false" onAction="#addPerson" prefHeight="22.0" prefWidth="106.0" text="Add" GridPane.rowIndex="3" />
+                              <Button fx:id="removePersonButton" mnemonicParsing="false" onAction="#removePerson" prefHeight="22.0" prefWidth="93.0" text="Remove" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </GridPane>
+                     </content></Tab>
+                <Tab text="Connect to DB">
+                     <content>
+                        <fx:include source="DbConnection.fxml" />
+                     </content></Tab>
+              </tabs>
+            </TabPane>
+        </items>
+      </SplitPane>
+   </center>
+
+</BorderPane>
