@@ -36,7 +36,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Button fx:id="but_close" mnemonicParsing="false" onAction="#but_close" prefHeight="25.0" prefWidth="63.0" text="X" GridPane.columnIndex="2" />
+                        <Button fx:id="closeButton" mnemonicParsing="false" onAction="#exitFromSystem" prefHeight="25.0" prefWidth="63.0" text="X" GridPane.columnIndex="2" />
                         <Button fx:id="max_button" mnemonicParsing="false" onAction="#maximize" prefHeight="26.0" prefWidth="61.0" text="max" GridPane.columnIndex="1" />
                         <Button fx:id="button_min" mnemonicParsing="false" onAction="#minimize" prefHeight="25.0" prefWidth="60.0" text="min" />
                     </children>
@@ -49,7 +49,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Button fx:id="about" mnemonicParsing="false" onAction="#about" prefHeight="25.0" prefWidth="82.0" text="?" />
+                        <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#about" prefHeight="25.0" prefWidth="82.0" text="?" />
                     </children>
                 </GridPane>
                 <Rectangle fx:id="move" arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="25.0" layoutX="95.0" layoutY="3.0" onMouseEntered="#but_move" stroke="#fffdfd" strokeType="INSIDE" width="344.0">

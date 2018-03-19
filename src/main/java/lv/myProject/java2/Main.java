@@ -22,13 +22,10 @@ public class Main extends Application {
 
             Parent root = FXMLLoader.load(getClass().getResource("/fxmlViews/MainWindow.fxml"));
             primaryStage.initStyle(StageStyle.UNDECORATED);
-
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(true);
            // primaryStage.setMaximized(true);
-
             primaryStage.show();
-
             System.out.println("starting...");
 
         }catch(IOException e){

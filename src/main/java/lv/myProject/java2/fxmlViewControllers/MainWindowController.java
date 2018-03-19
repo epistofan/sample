@@ -16,10 +16,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lv.myProject.java2.businessLogic.Person;
 import lv.myProject.java2.businessLogic.AddPerson;
-
-
+import lv.myProject.java2.businessLogic.PersonDatabase;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 
 public class MainWindowController {
@@ -34,9 +34,11 @@ public class MainWindowController {
     double yOff;
     double xOffset = 0.0;
     double yOffset = 0.0;
-    boolean w;
+    boolean isWindowMaximized;
+
 
     AddPerson addPerson = new AddPerson();
+    PersonDatabase personDatabase = new PersonDatabase();
     @FXML
     private Button max_button;
     @FXML
@@ -50,7 +52,7 @@ public class MainWindowController {
     @FXML
     public Button button_m;
     @FXML
-    private Button but_close;
+    private Button closeButton;
     @FXML
     public Button print_view_button;
     @FXML
@@ -62,7 +64,7 @@ public class MainWindowController {
     @FXML
     private Button refresh;
 
-    public Connection connection;
+
     @FXML
     public Circle windowResizeCircle;
     @FXML
@@ -70,7 +72,7 @@ public class MainWindowController {
     @FXML
     public Label moveLabel;
     @FXML
-    public Button about;
+    public Button aboutButton;
     @FXML
     private TextField firstNameField;
     @FXML
@@ -89,23 +91,19 @@ public class MainWindowController {
     ObservableList<Person> list = FXCollections.observableArrayList();
 
     @FXML
-    void addPerson() {
-        String returned =(
+    void addPerson() throws SQLException {
+        personDatabase.addPerson();
+
+      /*  String returned =(
         addPerson.addPerson(lastNameField.getText(),
                             firstNameField.getText(),
                             phoneField.getText()));
-
         moveLabel.setText(returned);
-        lastNameField.clear();
-
-
+    */    lastNameField.clear();
     }
-
     @FXML
     void removePerson(ActionEvent event) {
-
     }
-
     @FXML
     //window resize
     void windowResize(){
@@ -114,7 +112,6 @@ public class MainWindowController {
             windowResizeCircle.setOnMousePressed(e -> {
                 X = e.getScreenX();
                 Y = e.getScreenY();
-                System.out.println(X + Y + "test gov");
 
                 testx = ((Circle) e.getSource()).getScene().getWindow().getX();
                 testy = ((Circle) e.getSource()).getScene().getWindow().getY();
@@ -126,7 +123,7 @@ public class MainWindowController {
                 Y = e.getScreenY();
                 xOff = X - testx;
                 yOff = Y - testy;
-                System.out.println(xOff + "eto raznica");
+
                 width = ((Circle) e.getSource()).getScene().getWindow().getWidth();
                 ((Circle) e.getSource()).getScene().getWindow().setWidth(xOff);
                 ((Circle) e.getSource()).getScene().getWindow().setHeight(yOff);
@@ -143,7 +140,6 @@ public class MainWindowController {
             });
         }catch (Exception e){e.printStackTrace();
         }
-
     }
     @FXML
         //window move
@@ -151,115 +147,96 @@ public class MainWindowController {
         move.setOnMousePressed(e->{
             xOff=(e.getScreenX()-((Rectangle) e.getSource()).getScene().getWindow().getX());
             yOff=(e.getScreenY()-((Rectangle) e.getSource()).getScene().getWindow().getY());
-
         });
-
-
         move.setOnMouseDragged(e->{
-            System.out.println("drrr");
-            System.out.println(((Rectangle) e.getSource()).getScene().getWindow().getX());
-            System.out.println(e.getScreenX());
-
-
             ((Rectangle) e.getSource()).getScene().getWindow().setX(e.getScreenX()-xOff);
             ((Rectangle) e.getSource()).getScene().getWindow().setY(e.getScreenY()-yOff);
-
         });
-
     }
     @FXML
-    void but_close(ActionEvent event) {
+    void exitFromSystem() {
         System.exit(1);
     }
     @FXML
-    void print_view(ActionEvent event) throws Exception {
+    void print_view() throws Exception {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_views/MainWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_views/Print.fxml"));
             Parent root1 = fxmlLoader.load();
 
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             stage.initStyle(StageStyle.TRANSPARENT);
             Scene scene = new Scene(root1, 600, 400);
-
             stage.setScene(scene);
-
             stage.show();
-//MAKE WINDOW DRAG
-
+            //MAKE WINDOW DRAG
             root1.setOnMousePressed(e -> {
-                        System.out.println("test");
-
-
-
                         stage.getX();
                         stage.getY();
                         e.getScreenX();
                         e.getScreenY();
                         xOffset=e.getScreenX()-stage.getX();
-                        System.out.println(xOffset);
                         yOffset=e.getScreenY()- stage.getY();
-
                     }
-
-
             );
-
             root1.setOnMouseDragged(ev -> {
-
-                System.out.println(stage.getY());
-                System.out.println(stage.getX());
-
-
                 stage.setX(ev.getScreenX()- xOffset);
                 stage.setY(ev.getScreenY()- yOffset);
                 System.out.println(xOffset);
-
             });
-
-
-        } catch (Exception e) {
+            } catch (Exception e) {
             e.printStackTrace();
-
-
-        }
-
-
+            }
     }
     @FXML
     void minimize(ActionEvent event) {
-
-        System.out.println("min");
-//vlijanije na primaryStage
-        ((Stage) ((Button) event.getSource()).getScene().getWindow()).setIconified(true);
-
+            System.out.println("minimize...");
+            //vlijanije na primaryStage
+            ((Stage) ((Button) event.getSource()).getScene().getWindow()).setIconified(true);
     }
-
     @FXML
     void maximize(ActionEvent event) {
-
-
-//vlijanije na primaryStage
-        //check if window is maximized or minimized
-        w =((Stage) ((Button) event.getSource()).getScene().getWindow()).isMaximized();
-
-if (w ==true) {
-
-
-    ((Stage) ((Button) event.getSource()).getScene().getWindow()).setMaximized(false);
-    move.setWidth((((Stage) ((Button) event.getSource()).getScene().getWindow()).getWidth())-350);
-    }else{((Stage) ((Button) event.getSource()).getScene().getWindow()).setMaximized(true);
-    System.out.println("bljan"+(((Stage) ((Button) event.getSource()).getScene().getWindow()).getWidth()));
-    move.setWidth((((Stage) ((Button) event.getSource()).getScene().getWindow()).getWidth())-350);
-}
+            //vlijanije na primaryStage
+            //check if window is maximized or minimized
+            isWindowMaximized =((Stage) ((Button) event.getSource()).getScene().getWindow()).isMaximized();
+            if (isWindowMaximized) {
+            ((Stage) ((Button) event.getSource()).getScene().getWindow()).setMaximized(false);
+            move.setWidth((((Stage) ((Button) event.getSource()).getScene().getWindow()).getWidth())-350);
+            }else{((Stage) ((Button) event.getSource()).getScene().getWindow()).setMaximized(true);
+            move.setWidth((((Stage) ((Button) event.getSource()).getScene().getWindow()).getWidth())-350);
+        }
     }
-
     @FXML
-    void about(ActionEvent event) {
-      //  Main_window_controller main = new Main_window_controller();
-       // db_conn_control dbc = new db_conn_control(main);
-       // test1.setText(dbc.govneco());
+    void about() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxmlViews/AboutWindow.fxml"));
+            Parent root1 = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            Scene scene = new Scene(root1, 300, 200);
+            stage.setScene(scene);
+            stage.show();
+            //MAKE WINDOW DRAG
+            root1.setOnMousePressed(e -> {
+                        stage.getX();
+                        stage.getY();
+                        e.getScreenX();
+                        e.getScreenY();
+                        xOffset=e.getScreenX()-stage.getX();
+                        yOffset=e.getScreenY()- stage.getY();
+                    }
+            );
+            root1.setOnMouseDragged(ev -> {
+                stage.setX(ev.getScreenX()- xOffset);
+                stage.setY(ev.getScreenY()- yOffset);
+                System.out.println(xOffset);
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+/*
                     list.add(new Person("gavno", "zhopin", "2328634354824"));
                     list.add(new Person("gavno2", "sukin", "2542543"));
                     list.add(new Person("pidr", "lohan", "784451212543"));
@@ -293,6 +270,7 @@ if (w ==true) {
 
 
         tableOfPersons.getColumns().setAll(column1, column2, column3);
+        */
     }
     @FXML
     void statement() throws Exception {
@@ -302,17 +280,9 @@ if (w ==true) {
 
 
         try {
-            //db_conn_control dbc = new db_conn_control();
-            //dbc.statement(connection);
+
             } catch (Exception e) {
             e.printStackTrace();
             }
-        //dialogController.statement();
-
-
-
-
-    }
-
-
+          }
 }
