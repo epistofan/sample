@@ -7,6 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import lv.myProject.java2.businessLogic.DatabaseSource;
+import lv.myProject.java2.businessLogic.PersonDatabase;
+import lv.myProject.java2.fxmlViewControllers.DbConnectionController;
+import lv.myProject.java2.fxmlViewControllers.MainWindowController;
 
 import java.io.IOException;
 
@@ -27,6 +31,7 @@ public class Main extends Application {
            // primaryStage.setMaximized(true);
             primaryStage.show();
             System.out.println("starting...");
+
 
         }catch(IOException e){
             e.printStackTrace();

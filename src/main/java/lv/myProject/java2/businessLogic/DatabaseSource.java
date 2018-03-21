@@ -31,6 +31,7 @@ public class DatabaseSource {
 
             System.out.println("after connection");
             System.out.println(connection);
+            getConnection();
 
         }catch (Exception e) {
 
@@ -42,7 +43,8 @@ public class DatabaseSource {
 
     }
 public Connection getConnection(){
-    makeConnection(db_name, user, pass);
-      return connection;
+        Connection connection1;
+    connection1=this.connection;
+      return connection1;
 }
 }

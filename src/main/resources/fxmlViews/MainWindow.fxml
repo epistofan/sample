@@ -148,7 +148,7 @@
                      </content></Tab>
                 <Tab text="Connect to DB">
                      <content>
-                        <fx:include source="DbConnection.fxml" />
+                        <fx:include fx:id="dbConnection" source="DbConnection.fxml"  />
                      </content></Tab>
               </tabs>
             </TabPane>

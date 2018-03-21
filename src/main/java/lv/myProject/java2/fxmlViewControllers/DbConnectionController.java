@@ -12,13 +12,11 @@ import javafx.stage.*;
 
 import lv.myProject.java2.businessLogic.DatabaseSource;
 import lv.myProject.java2.businessLogic.GetData;
+import lv.myProject.java2.businessLogic.PersonDatabase;
 import lv.myProject.java2.businessLogic.Validator;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Created by Igor on 09.08.2017.
@@ -39,11 +37,13 @@ public class DbConnectionController {
 
     String dataBaseName;
     boolean dbNameIsEmpty;
+    //DatabaseSource databaseSource;
 
-
+    DatabaseSource databaseSource = new DatabaseSource();
+    PersonDatabase personDatabase = new PersonDatabase(databaseSource);
 
     @FXML
-    void login() {
+    void login() throws SQLException {
 
         System.out.println("login");
         login_button.setCursor(Cursor.WAIT);
@@ -60,7 +60,8 @@ public class DbConnectionController {
             String db_name = "jdbc:sqlserver://" + db_s_name.getText();
 
 
-
+databaseSource.makeConnection(user, pass, db_name);
+            personDatabase.removePerson();
         }
 
         }

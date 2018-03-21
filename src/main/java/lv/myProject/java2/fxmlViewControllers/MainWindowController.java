@@ -1,6 +1,7 @@
 package lv.myProject.java2.fxmlViewControllers;
 
 
+import com.sun.glass.ui.View;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,15 +15,14 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import lv.myProject.java2.businessLogic.Person;
-import lv.myProject.java2.businessLogic.AddPerson;
-import lv.myProject.java2.businessLogic.PersonDatabase;
+import lv.myProject.java2.businessLogic.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 
 public class MainWindowController {
+
 
 
     double width;
@@ -36,9 +36,16 @@ public class MainWindowController {
     double yOffset = 0.0;
     boolean isWindowMaximized;
 
+    //PersonDatabase personDatabase;
 
-    AddPerson addPerson = new AddPerson();
-    PersonDatabase personDatabase = new PersonDatabase();
+
+
+    //MainWindowController mainWindowController = new MainWindowController();
+
+
+
+
+
     @FXML
     private Button max_button;
     @FXML
@@ -88,11 +95,17 @@ public class MainWindowController {
     @FXML
     private Button removePersonButton;
 
+    @FXML
+    DbConnectionController dbConnectionController;
+
     ObservableList<Person> list = FXCollections.observableArrayList();
+
+
 
     @FXML
     void addPerson() throws SQLException {
-        personDatabase.addPerson();
+
+        dbConnectionController.personDatabase.addPerson();
 
       /*  String returned =(
         addPerson.addPerson(lastNameField.getText(),
