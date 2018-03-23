@@ -7,11 +7,7 @@
     <groupId>myProjectJava2</groupId>
     <artifactId>myProject</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.1.BUILD-SNAPSHOT</version>
-    </parent>
+
 
 
     <packaging>jar</packaging>
@@ -23,23 +19,16 @@
             <name>MVNRepository</name>
             <url>http://mvnrepository.com</url>
         </repository>
-        <repository>
-            <id>spring-snapshots</id>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots><enabled>true</enabled></snapshots>
-        </repository>
-        <repository>
-            <id>spring-milestones</id>
-            <url>https://repo.spring.io/milestone</url>
-        </repository>
+
+
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.3.10.RELEASE</version>
         </dependency>
-
 
         <dependency>
             <groupId>junit</groupId>
@@ -67,11 +56,7 @@
             <version>6.4.0.jre9</version>
             <scope>sample</scope>
         </dependency>
-        <dependency>
-            <groupId>com.airhacks</groupId>
-            <artifactId>afterburner.fx</artifactId>
-            <version>1.6.0</version>
-        </dependency>
+
 
     </dependencies>
 
@@ -80,10 +65,6 @@
 
 
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -100,15 +81,6 @@
         </plugins>
 
     </build>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-snapshots</id>
-            <url>https://repo.spring.io/snapshot</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <url>https://repo.spring.io/milestone</url>
-        </pluginRepository>
-    </pluginRepositories>
+
 
 </project>

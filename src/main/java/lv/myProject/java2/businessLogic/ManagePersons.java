@@ -1,6 +1,7 @@
 package lv.myProject.java2.businessLogic;
 
-import java.sql.Connection;
+import lv.myProject.java2.Domain.Person;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;

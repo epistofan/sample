@@ -1,5 +1,8 @@
 package lv.myProject.java2.businessLogic;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Validator {
 
     boolean isEmpty;

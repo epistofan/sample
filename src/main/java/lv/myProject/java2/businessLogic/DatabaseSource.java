@@ -1,10 +1,13 @@
 package lv.myProject.java2.businessLogic;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+@Component
 public class DatabaseSource {
 
 
@@ -31,7 +34,7 @@ public class DatabaseSource {
 
             System.out.println("after connection");
             System.out.println(connection);
-            getConnection();
+
 
         }catch (Exception e) {
 
@@ -42,9 +45,6 @@ public class DatabaseSource {
         }
 
     }
-public Connection getConnection(){
-        Connection connection1;
-    connection1=this.connection;
-      return connection1;
-}
+
+
 }

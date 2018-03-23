@@ -2,6 +2,7 @@ package lv.myProject.java2.businessLogic;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lv.myProject.java2.Domain.Person;
 
 
 public class AddPerson {

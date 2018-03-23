@@ -1,4 +1,4 @@
-package lv.myProject.java2.businessLogic;
+package lv.myProject.java2.Domain;
 
 import javafx.beans.property.SimpleStringProperty;
 

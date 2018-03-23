@@ -1,7 +1,7 @@
 package lv.myProject.java2.fxmlViewControllers;
 
 
-import com.sun.glass.ui.View;
+import com.mysql.cj.x.protobuf.MysqlxSession;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,17 +10,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import lv.myProject.java2.businessLogic.*;
+import lv.myProject.java2.Domain.Person;
+import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
-
+@Component
 public class MainWindowController {
 
 
@@ -138,16 +137,16 @@ public class MainWindowController {
                 yOff = Y - testy;
 
                 width = ((Circle) e.getSource()).getScene().getWindow().getWidth();
+
                 ((Circle) e.getSource()).getScene().getWindow().setWidth(xOff);
                 ((Circle) e.getSource()).getScene().getWindow().setHeight(yOff);
                 if (xOff < 400) {
                     System.out.println("stop");
                     ((Circle) e.getSource()).getScene().getWindow().setWidth(400);
-
+                    ((Circle) e.getSource()).getScene().getWindow().setHeight(400);
                 } else if (yOff < 400) {
                     ((Circle) e.getSource()).getScene().getWindow().setHeight(400);
                 }
-                System.out.println(testx + "drag");
 
                 move.setWidth((xOff - 350));
             });
