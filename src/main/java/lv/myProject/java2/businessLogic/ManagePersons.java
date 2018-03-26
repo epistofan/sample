@@ -1,6 +1,7 @@
 package lv.myProject.java2.businessLogic;
 
 import lv.myProject.java2.Domain.Person;
+import lv.myProject.java2.Domain.Person1;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -10,7 +11,7 @@ public interface ManagePersons {
 
 
 
-    void addPerson() throws SQLException;
+    void addPerson(Person1 person) throws SQLException;
     void removePerson();
     List<Person> showAll();
     Optional<Person> findPerson();

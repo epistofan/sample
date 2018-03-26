@@ -66,3 +66,38 @@
 
 
     }
+    /*
+                        list.add(new Person("gavno", "zhopin", "2328634354824"));
+                        list.add(new Person("gavno2", "sukin", "2542543"));
+                        list.add(new Person("pidr", "lohan", "784451212543"));
+                        list.add(new Person("gunr", "alektrik", "75454545454545454545443"));
+
+
+            TableColumn<Person, String> column1 = new TableColumn<>("firstname");
+            TableColumn<Person, String> column2 = new TableColumn<>("lastname");
+            TableColumn<Person, String> column3 = new TableColumn<>("phone");
+            PropertyValueFactory<Person, String> firstNameProperty =
+                new PropertyValueFactory<>("firstName");
+
+            PropertyValueFactory<Person, String> lastNameProperty =
+                new PropertyValueFactory<>("lastName");
+
+            PropertyValueFactory<Person, String> phoneProperty =
+                new PropertyValueFactory<>("phone");
+
+
+            column1.setCellValueFactory(firstNameProperty);
+            column2.setCellValueFactory(lastNameProperty);
+            column3.setCellValueFactory(phoneProperty);
+            tableOfPersons.setEditable(true);
+
+
+            tableOfPersons.setItems(list);
+
+
+
+                System.out.println("esasss");
+
+
+            tableOfPersons.getColumns().setAll(column1, column2, column3);
+            */

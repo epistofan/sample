@@ -12,7 +12,7 @@ import javafx.stage.*;
 
 import lv.myProject.java2.businessLogic.DatabaseSource;
 import lv.myProject.java2.businessLogic.GetData;
-import lv.myProject.java2.businessLogic.PersonDatabase;
+import lv.myProject.java2.businessLogic.PersonDatabaseManagement;
 import lv.myProject.java2.businessLogic.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -41,17 +41,11 @@ public class DbConnectionController {
     String dataBaseName;
     boolean dbNameIsEmpty;
 
-   //DatabaseSource databaseSource;
-
-    //DatabaseSource databaseSource = new DatabaseSource();
 
     @Autowired
     DatabaseSource databaseSource;
     @Autowired
-    PersonDatabase personDatabase;
-
-
-   // PersonDatabase personDatabase = new PersonDatabase(databaseSource);
+    PersonDatabaseManagement personDatabase;
 
     @FXML
     void login() throws SQLException {

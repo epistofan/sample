@@ -12,11 +12,13 @@ public class Person {
         String firstName,
         String lastName,
         String phone
+
     ) {
         this.firstName = new SimpleStringProperty( firstName );
         this.lastName = new SimpleStringProperty( lastName );
         this.phone = new SimpleStringProperty( phone );
     }
+
 
 
     public String getFirstName() {

@@ -15,35 +15,22 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lv.myProject.java2.Domain.Person;
+import lv.myProject.java2.Domain.Person1;
 import org.springframework.stereotype.Component;
-
 import java.sql.SQLException;
 
 @Component
 public class MainWindowController {
 
-
-
-    double width;
-    double testx;
-    double testy;
-    double X;
-    double Y;
+    double currentX=0;
+    double currentY=0;
+    double cursorX=0;
+    double cursorY=0;
     double xOff;
     double yOff;
     double xOffset = 0.0;
     double yOffset = 0.0;
     boolean isWindowMaximized;
-
-    //PersonDatabase personDatabase;
-
-
-
-    //MainWindowController mainWindowController = new MainWindowController();
-
-
-
-
 
     @FXML
     private Button max_button;
@@ -69,8 +56,6 @@ public class MainWindowController {
     public Button statm;
     @FXML
     private Button refresh;
-
-
     @FXML
     public Circle windowResizeCircle;
     @FXML
@@ -82,15 +67,13 @@ public class MainWindowController {
     @FXML
     private TextField firstNameField;
     @FXML
-    private TextField phoneField;
+    private TextField phoneNumberField;
     @FXML
     private TextField lastNameField;
     @FXML
-    private Label lastNameLabel;
+    private TextField personCodeField;
     @FXML
-    private Label phoneLabel;
-    @FXML
-    private Label firstNameLabel;
+    private TextField emailField;
     @FXML
     private Button removePersonButton;
 
@@ -99,44 +82,43 @@ public class MainWindowController {
 
     ObservableList<Person> list = FXCollections.observableArrayList();
 
-
-
     @FXML
     void addPerson() throws SQLException {
 
-        dbConnectionController.personDatabase.addPerson();
+        Person1 person = new Person1();
+        person.setFirstName(firstNameField.getText());
+        person.setLastName(lastNameField.getText());
+        person.setPersonCode(personCodeField.getText());
+        person.setEmail(emailField.getText());
+        person.setPhoneNumber(phoneNumberField.getText());
 
-      /*  String returned =(
-        addPerson.addPerson(lastNameField.getText(),
-                            firstNameField.getText(),
-                            phoneField.getText()));
-        moveLabel.setText(returned);
-    */    lastNameField.clear();
+        dbConnectionController.personDatabase.addPerson(person);
+
+        lastNameField.clear();
     }
+
     @FXML
-    void removePerson(ActionEvent event) {
+    void removePerson() {
     }
+
     @FXML
-    //window resize
     void windowResize(){
+
         try {
             System.out.println("resizing...");
             windowResizeCircle.setOnMousePressed(e -> {
-                X = e.getScreenX();
-                Y = e.getScreenY();
+                cursorX = e.getScreenX();
+                cursorY = e.getScreenY();
 
-                testx = ((Circle) e.getSource()).getScene().getWindow().getX();
-                testy = ((Circle) e.getSource()).getScene().getWindow().getY();
-                width = ((Circle) e.getSource()).getScene().getWindow().getWidth();
+                currentX = ((Circle) e.getSource()).getScene().getWindow().getX();
+                currentY = ((Circle) e.getSource()).getScene().getWindow().getY();
 
             });
             windowResizeCircle.setOnMouseDragged(e -> {
-                X = e.getScreenX();
-                Y = e.getScreenY();
-                xOff = X - testx;
-                yOff = Y - testy;
-
-                width = ((Circle) e.getSource()).getScene().getWindow().getWidth();
+                cursorX = e.getScreenX();
+                cursorY = e.getScreenY();
+                xOff = cursorX - currentX;
+                yOff = cursorY - currentY;
 
                 ((Circle) e.getSource()).getScene().getWindow().setWidth(xOff);
                 ((Circle) e.getSource()).getScene().getWindow().setHeight(yOff);
@@ -153,9 +135,9 @@ public class MainWindowController {
         }catch (Exception e){e.printStackTrace();
         }
     }
+
     @FXML
-        //window move
-    void but_move(){
+    void windowMove(){
         move.setOnMousePressed(e->{
             xOff=(e.getScreenX()-((Rectangle) e.getSource()).getScene().getWindow().getX());
             yOff=(e.getScreenY()-((Rectangle) e.getSource()).getScene().getWindow().getY());
@@ -165,23 +147,24 @@ public class MainWindowController {
             ((Rectangle) e.getSource()).getScene().getWindow().setY(e.getScreenY()-yOff);
         });
     }
+
     @FXML
     void exitFromSystem() {
         System.exit(1);
     }
+
     @FXML
-    void print_view() throws Exception {
+    void printViewWindow() throws Exception {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml_views/Print.fxml"));
             Parent root1 = fxmlLoader.load();
-
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             stage.initStyle(StageStyle.TRANSPARENT);
             Scene scene = new Scene(root1, 600, 400);
             stage.setScene(scene);
             stage.show();
-            //MAKE WINDOW DRAG
+
             root1.setOnMousePressed(e -> {
                         stage.getX();
                         stage.getY();
@@ -200,26 +183,26 @@ public class MainWindowController {
             e.printStackTrace();
             }
     }
+
     @FXML
-    void minimize(ActionEvent event) {
+    void minimizeWindow(ActionEvent event) {
             System.out.println("minimize...");
-            //vlijanije na primaryStage
             ((Stage) ((Button) event.getSource()).getScene().getWindow()).setIconified(true);
     }
+
     @FXML
-    void maximize(ActionEvent event) {
-            //vlijanije na primaryStage
-            //check if window is maximized or minimized
+    void maximizeWindow(ActionEvent event) {
             isWindowMaximized =((Stage) ((Button) event.getSource()).getScene().getWindow()).isMaximized();
             if (isWindowMaximized) {
             ((Stage) ((Button) event.getSource()).getScene().getWindow()).setMaximized(false);
-            move.setWidth((((Stage) ((Button) event.getSource()).getScene().getWindow()).getWidth())-350);
+            move.setWidth((( ((Button) event.getSource()).getScene().getWindow()).getWidth())-350);
             }else{((Stage) ((Button) event.getSource()).getScene().getWindow()).setMaximized(true);
-            move.setWidth((((Stage) ((Button) event.getSource()).getScene().getWindow()).getWidth())-350);
+            move.setWidth((( ((Button) event.getSource()).getScene().getWindow()).getWidth())-350);
         }
     }
+
     @FXML
-    void about() {
+    void aboutWindow() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxmlViews/AboutWindow.fxml"));
             Parent root1 = fxmlLoader.load();
@@ -247,43 +230,8 @@ public class MainWindowController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-/*
-                    list.add(new Person("gavno", "zhopin", "2328634354824"));
-                    list.add(new Person("gavno2", "sukin", "2542543"));
-                    list.add(new Person("pidr", "lohan", "784451212543"));
-                    list.add(new Person("gunr", "alektrik", "75454545454545454545443"));
-
-
-        TableColumn<Person, String> column1 = new TableColumn<>("firstname");
-        TableColumn<Person, String> column2 = new TableColumn<>("lastname");
-        TableColumn<Person, String> column3 = new TableColumn<>("phone");
-        PropertyValueFactory<Person, String> firstNameProperty =
-            new PropertyValueFactory<>("firstName");
-
-        PropertyValueFactory<Person, String> lastNameProperty =
-            new PropertyValueFactory<>("lastName");
-
-        PropertyValueFactory<Person, String> phoneProperty =
-            new PropertyValueFactory<>("phone");
-
-
-        column1.setCellValueFactory(firstNameProperty);
-        column2.setCellValueFactory(lastNameProperty);
-        column3.setCellValueFactory(phoneProperty);
-        tableOfPersons.setEditable(true);
-
-
-        tableOfPersons.setItems(list);
-
-
-
-            System.out.println("esasss");
-
-
-        tableOfPersons.getColumns().setAll(column1, column2, column3);
-        */
     }
+
     @FXML
     void statement() throws Exception {
         list.add(new Person("andrew", "coooll", "75454545454545454545443"));
