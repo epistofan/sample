@@ -1,5 +1,7 @@
 package lv.myProject.java2.Domain;
 
+import javafx.beans.property.SimpleStringProperty;
+
 import java.util.Objects;
 
 public class Person1 {
@@ -9,6 +11,15 @@ public class Person1 {
         String personCode;
         String email;
         String phoneNumber;
+        Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;

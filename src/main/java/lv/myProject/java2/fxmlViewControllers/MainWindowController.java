@@ -1,7 +1,6 @@
 package lv.myProject.java2.fxmlViewControllers;
 
 
-import com.mysql.cj.x.protobuf.MysqlxSession;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,17 +9,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import lv.myProject.java2.Domain.Person;
 import lv.myProject.java2.Domain.Person1;
 import org.springframework.stereotype.Component;
 import java.sql.SQLException;
 
 @Component
 public class MainWindowController {
+
     @FXML
     public TextField phoneNumberField;
     @FXML
@@ -54,7 +54,7 @@ public class MainWindowController {
     @FXML
     public Button print_view_button;
     @FXML
-    public TableView<Person> tableOfPersons;
+    public TableView<Person1> tableOfPersons;
     @FXML
     public Label test1;
     @FXML
@@ -69,6 +69,8 @@ public class MainWindowController {
     public Label moveLabel;
     @FXML
     public Button aboutButton;
+    @FXML
+    public Button showAllButton;
     @FXML
     private TextField firstNameField;
     //@FXML
@@ -85,7 +87,7 @@ public class MainWindowController {
     @FXML
     DbConnectionController dbConnectionController;
 
-    ObservableList<Person> list = FXCollections.observableArrayList();
+    ObservableList<Person1> list = FXCollections.observableArrayList();
 
     @FXML
     void addPerson() throws SQLException {
@@ -104,6 +106,26 @@ public class MainWindowController {
 
     @FXML
     void removePerson() {
+    }
+    @FXML
+    void showAllPersons() {
+        list = dbConnectionController.personDatabase.showAll();
+        //for (Person1 person : dbConnectionController.personDatabase.showAll()) {
+           // System.out.println(person.getId() + person.getFirstName());
+        //}
+
+          //System.out.println(list.stream());
+        TableColumn<Person1, Long> column1 = new TableColumn<>("ID");
+        TableColumn<Person1, String> column2 = new TableColumn<>("FirstName");
+        TableColumn<Person1, String> column3 = new TableColumn<>("LastName");
+
+        column1.setCellValueFactory(new PropertyValueFactory<>("id"));
+        column2.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        column3.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+
+
+        tableOfPersons.setItems(list);
+        tableOfPersons.getColumns().addAll(column1, column2, column3);
     }
 
     @FXML
@@ -239,7 +261,7 @@ public class MainWindowController {
 
     @FXML
     void statement() throws Exception {
-        list.add(new Person("andrew", "coooll", "75454545454545454545443"));
+       // list.add(new Person("andrew", "coooll", "75454545454545454545443"));
         System.out.println("statement....");
        // System.out.println(connection);
 

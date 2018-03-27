@@ -1,12 +1,13 @@
 package lv.myProject.java2.businessLogic;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lv.myProject.java2.Domain.Person;
 import lv.myProject.java2.Domain.Person1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -18,6 +19,7 @@ public class PersonDatabaseManagement implements ManagePersons{
     String db_name;
     Statement statement;
     ResultSet resultSet;
+    ObservableList<Person1> personList = FXCollections.observableArrayList();
 
     @Autowired
     DatabaseSource databaseSource;
@@ -63,9 +65,26 @@ public class PersonDatabaseManagement implements ManagePersons{
     }
 
     @Override
-    public List<Person> showAll() {
+    public ObservableList<Person1> showAll() {
+        connection1 = databaseSource.connection;
+        try {
+            System.out.println("show all Persons");
+            String SQL = "SELECT * FROM [Person].[dbo].[Person]";
+            System.out.println(connection1 + " " + "addPerson");
+            PreparedStatement preparedStatement = connection1.prepareStatement(SQL);
 
-        return null;
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Person1 person = new Person1();
+                person.setId(resultSet.getLong("ID"));
+                person.setFirstName(resultSet.getString("FirstName"));
+                person.setLastName(resultSet.getString("LastName"));
+                personList.add(person);
+            }
+        }catch (Exception e){
+
+        }
+        return personList;
     }
 
 

@@ -89,7 +89,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                    <TableView fx:id="table" editable="true" layoutX="-5.0" maxWidth="-Infinity" prefHeight="341.0" prefWidth="354.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    <TableView fx:id="tableOfPersons" editable="true" layoutX="-5.0" maxWidth="-Infinity" prefHeight="341.0" prefWidth="354.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <TabPane maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="334.0" prefWidth="177.0" tabClosingPolicy="ALL_TABS">
@@ -151,6 +151,7 @@
                                     <Insets left="10.0" />
                                  </padding>
                               </Label>
+                              <Button fx:id="showAllButton" mnemonicParsing="false" onAction="#showAllPersons" prefHeight="22.0" prefWidth="82.0" text="Show all" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                            </children>
                            <padding>
                               <Insets left="10.0" top="10.0" />
