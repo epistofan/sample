@@ -21,7 +21,12 @@ import java.sql.SQLException;
 
 @Component
 public class MainWindowController {
-
+    @FXML
+    public TextField phoneNumberField;
+    @FXML
+    public TextField emailField;
+    @FXML
+    public TextField personCodeField;
     double currentX=0;
     double currentY=0;
     double cursorX=0;
@@ -66,14 +71,14 @@ public class MainWindowController {
     public Button aboutButton;
     @FXML
     private TextField firstNameField;
-    @FXML
-    private TextField phoneNumberField;
+    //@FXML
+    //private TextField phoneNumberField;
     @FXML
     private TextField lastNameField;
-    @FXML
-    private TextField personCodeField;
-    @FXML
-    private TextField emailField;
+    //@FXML
+    //private TextField personCodeField;
+    //@FXML
+    //private TextField emailField;
     @FXML
     private Button removePersonButton;
 

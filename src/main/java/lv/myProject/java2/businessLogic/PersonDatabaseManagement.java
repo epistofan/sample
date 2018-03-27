@@ -31,8 +31,8 @@ public class PersonDatabaseManagement implements ManagePersons{
         try {
             connection1 = databaseSource.connection;
             System.out.println("add Person");
-            String SQL = "INSERT INTO [Person].[dbo].[Person] (ID, FirstName, LastName, PersonCode, Email, PhoneNumber)" +
-                    "VALUES (9, ?, ?, ?, ?, ?, ?);";
+            String SQL = "INSERT INTO [Person].[dbo].[Person] (FirstName, LastName, PersonCode, Email, PhoneNumber)" +
+                    "VALUES (?, ?, ?, ?, ?);";
             System.out.println(connection1 + " " + "addPerson");
 
             PreparedStatement preparedStatement =
