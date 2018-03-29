@@ -53,8 +53,17 @@ public class MainWindowController {
     private Button closeButton;
     @FXML
     public Button print_view_button;
+
     @FXML
     public TableView<Person1> tableOfPersons;
+    @FXML
+    public TableColumn<Person1, Long> ID;
+    @FXML
+    public TableColumn<Person1, String> firstName;
+    @FXML
+    public TableColumn<Person1, String> lastName;
+
+
     @FXML
     public Label test1;
     @FXML
@@ -106,26 +115,32 @@ public class MainWindowController {
 
     @FXML
     void removePerson() {
+
+
+
+
+
     }
     @FXML
     void showAllPersons() {
+        //list=null;
+
         list = dbConnectionController.personDatabase.showAll();
         //for (Person1 person : dbConnectionController.personDatabase.showAll()) {
            // System.out.println(person.getId() + person.getFirstName());
         //}
-
-          //System.out.println(list.stream());
-        TableColumn<Person1, Long> column1 = new TableColumn<>("ID");
+      /*  TableColumn<Person1, Long> column1 = new TableColumn<>("ID");
         TableColumn<Person1, String> column2 = new TableColumn<>("FirstName");
         TableColumn<Person1, String> column3 = new TableColumn<>("LastName");
-
-        column1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        column2.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        column3.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-
+*/
+        ID.setCellValueFactory(new PropertyValueFactory<Person1, Long>("id"));
+        firstName.setCellValueFactory(new PropertyValueFactory<Person1, String>("firstName"));
+        lastName.setCellValueFactory(new PropertyValueFactory<Person1, String>("lastName"));
 
         tableOfPersons.setItems(list);
-        tableOfPersons.getColumns().addAll(column1, column2, column3);
+       // tableOfPersons.getColumns().addAll(column1, column2, column3);
+          //System.out.println(list.stream());
+
     }
 
     @FXML

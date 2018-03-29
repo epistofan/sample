@@ -7,6 +7,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -89,7 +90,12 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                    <TableView fx:id="tableOfPersons" editable="true" layoutX="-5.0" maxWidth="-Infinity" prefHeight="341.0" prefWidth="354.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    <TableView fx:id="tableOfPersons" editable="true" layoutX="-5.0" maxWidth="-Infinity" prefHeight="341.0" prefWidth="354.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="ID" prefWidth="75.0" text="Column X" />
+                        <TableColumn fx:id="firstName" prefWidth="75.0" text="Column X" />
+                        <TableColumn fx:id="lastName" prefWidth="75.0" text="Column X" />
+                     </columns></TableView>
                </children>
             </AnchorPane>
             <TabPane maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="334.0" prefWidth="177.0" tabClosingPolicy="ALL_TABS">

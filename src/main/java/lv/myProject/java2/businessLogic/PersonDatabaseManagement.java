@@ -31,6 +31,7 @@ public class PersonDatabaseManagement implements ManagePersons{
     @Override
     public void addPerson(Person1 person) throws SQLException {
         try {
+            personList=null;
             connection1 = databaseSource.connection;
             System.out.println("add Person");
             String SQL = "INSERT INTO [Person].[dbo].[Person] (FirstName, LastName, PersonCode, Email, PhoneNumber)" +
@@ -66,6 +67,7 @@ public class PersonDatabaseManagement implements ManagePersons{
 
     @Override
     public ObservableList<Person1> showAll() {
+       // personList=null;
         connection1 = databaseSource.connection;
         try {
             System.out.println("show all Persons");
