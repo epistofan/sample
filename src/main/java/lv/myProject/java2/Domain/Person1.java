@@ -2,16 +2,28 @@ package lv.myProject.java2.Domain;
 
 import javafx.beans.property.SimpleStringProperty;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name="Person")
 public class Person1 {
 
+        @Column(name="firstName", nullable = false)
         String firstName;
+
+        @Column(name="lastName", nullable = false)
         String lastName;
+
         String personCode;
         String email;
         String phoneNumber;
-        Long id;
+
+
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
 
     public Long getId() {
         return id;
