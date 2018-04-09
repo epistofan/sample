@@ -4,9 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lv.myProject.java2.Domain.Person;
 import lv.myProject.java2.Domain.Person1;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.sql.*;
 import java.util.Optional;
 
@@ -28,8 +31,21 @@ public class PersonDatabaseManagement implements ManagePersons{
         this.databaseSource = databaseSource;
     }
 */
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    private Session session() {
+        return sessionFactory.getCurrentSession();
+    }
+
+
+
     @Override
-    public void addPerson(Person1 person) throws SQLException {
+
+    public void addPerson(Person1 person) {
+        session().save(person);
+    }
+/*    public void addPerson(Person1 person) throws SQLException {
         try {
             personList=null;
             connection1 = databaseSource.connection;
@@ -48,17 +64,17 @@ public class PersonDatabaseManagement implements ManagePersons{
 
             preparedStatement.executeUpdate();
             System.out.println("statement");
-            /*resultSet = statement.executeQuery(SQL);
+            *//*resultSet = statement.executeQuery(SQL);
             System.out.println("query executing");
             while (resultSet.next()) {
                 System.out.println(resultSet.getString(1));
             }
-            */
+            *//*
         }catch (Exception e) {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
     @Override
     public void removePerson() {
@@ -78,7 +94,7 @@ public class PersonDatabaseManagement implements ManagePersons{
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Person1 person = new Person1();
-                person.setId(resultSet.getLong("ID"));
+                person.setId(resultSet.getInt("ID"));
                 person.setFirstName(resultSet.getString("FirstName"));
                 person.setLastName(resultSet.getString("LastName"));
                 personList.add(person);

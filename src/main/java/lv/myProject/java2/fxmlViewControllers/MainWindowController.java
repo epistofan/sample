@@ -15,7 +15,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lv.myProject.java2.Domain.Person1;
+import lv.myProject.java2.businessLogic.PersonDatabaseManagement;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.transaction.Transaction;
+import javax.transaction.Transactional;
 import java.sql.SQLException;
 
 @Component
@@ -92,14 +97,17 @@ public class MainWindowController {
     //private TextField emailField;
     @FXML
     private Button removePersonButton;
-
-    @FXML
+    @Autowired
+    PersonDatabaseManagement personDatabase;
+    @Autowired
     DbConnectionController dbConnectionController;
+
 
     ObservableList<Person1> list = FXCollections.observableArrayList();
 
+
     @FXML
-    void addPerson() throws SQLException {
+        void addPerson()  {
 
         Person1 person = new Person1();
         person.setFirstName(firstNameField.getText());
@@ -108,7 +116,8 @@ public class MainWindowController {
         person.setEmail(emailField.getText());
         person.setPhoneNumber(phoneNumberField.getText());
 
-        dbConnectionController.personDatabase.addPerson(person);
+
+        personDatabase.addPerson(person);
 
         lastNameField.clear();
     }
