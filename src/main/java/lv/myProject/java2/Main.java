@@ -2,6 +2,7 @@ package lv.myProject.java2;
 
 
 import lv.myProject.java2.Configs.SpringAppConfig;
+import lv.myProject.java2.ViewControllers.AddPersonController;
 import lv.myProject.java2.ViewControllers.ManagePersons;
 import lv.myProject.java2.businessLogic.*;
 import lv.myProject.java2.businessLogic.AddPerson.AddPerson;
@@ -32,7 +33,7 @@ public class Main  {
                     = new AnnotationConfigApplicationContext(SpringAppConfig.class);
 
             Map<Integer,ManagePersons> actionMap = new HashMap<>();
-            actionMap.put(1, applicationContext.getBean(AddPerson.class));
+            actionMap.put(1, applicationContext.getBean(AddPersonController.class));
             actionMap.put(2, applicationContext.getBean(RemovePerson.class));
             actionMap.put(3, applicationContext.getBean(ShowAllPerson.class));
             actionMap.put(4, applicationContext.getBean(ProgrammExit.class));
@@ -55,7 +56,7 @@ public class Main  {
         }
 
         private static int getFromUserMenuItemToExecute() {
-            System.out.print("Please enter menu item number to execute:");
+            System.out.print("Please enter menu item number to execute:\n");
             Scanner sc = new Scanner(System.in);
             return Integer.parseInt(sc.nextLine());
         }

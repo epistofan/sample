@@ -1,13 +1,18 @@
 package lv.myProject.java2.businessLogic.AddPerson;
 
+
+import lv.myProject.java2.Domain.Person;
+
 import lv.myProject.java2.ViewControllers.ManagePersons;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
+
 @Component
-public class AddPerson implements ManagePersons {
+public class AddPerson {
     String firstName;
     String lastName;
     String phoneNumber;
@@ -19,8 +24,8 @@ public class AddPerson implements ManagePersons {
         return sessionFactory.getCurrentSession();
     }
 
-@Override
-public void execute(){
+    @Transactional
+    public void addPerson(Person person){
 
         System.out.println("aadd");
         session().save(person);
@@ -30,11 +35,5 @@ public void execute(){
 
 
 
-   /* public String addPerson(String lastName, String firstName, String phoneNumber){
-        listOfPersonObjects.add(new Person(firstName,lastName,phoneNumber));
-        System.out.println(listOfPersonObjects.size());
-        returnedText="Good";
-        return returnedText;
-    }*/
 
 }

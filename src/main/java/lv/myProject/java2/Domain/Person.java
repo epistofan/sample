@@ -1,50 +1,92 @@
 package lv.myProject.java2.Domain;
 
-import javafx.beans.property.SimpleStringProperty;
 
+import javax.persistence.*;
+import java.util.Objects;
+
+@Entity
+@Table(name="persons")
 public class Person {
-    private final SimpleStringProperty firstName;
-    private final SimpleStringProperty lastName;
-    private final SimpleStringProperty phone;
+
+        @Column(name="firstName", nullable = false)
+        String firstName;
+
+        @Column(name="lastName", nullable = false)
+        String lastName;
+
+        String personCode;
+        String email;
+        String phoneNumber;
 
 
-    public Person(
-        String firstName,
-        String lastName,
-        String phone
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Integer id;
 
-    ) {
-        this.firstName = new SimpleStringProperty( firstName );
-        this.lastName = new SimpleStringProperty( lastName );
-        this.phone = new SimpleStringProperty( phone );
+    public Integer getId() {
+        return id;
     }
 
-
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
-        return firstName.get();
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName.set( firstName );
+        this.firstName = firstName;
     }
 
-
-
     public String getLastName() {
-        return lastName.get();
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName.set( lastName );
+        this.lastName = lastName;
     }
 
-
-
-    public String getPhone() {
-        return phone.get();
+    public String getPersonCode() {
+        return personCode;
     }
-    public void setPhone(String phone) {
-        this.phone.set( phone );
+
+    public void setPersonCode(String personCode) {
+        this.personCode = personCode;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(firstName, person.firstName) &&
+                Objects.equals(lastName, person.lastName) &&
+                Objects.equals(personCode, person.personCode) &&
+                Objects.equals(email, person.email) &&
+                Objects.equals(phoneNumber, person.phoneNumber);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(firstName, lastName, personCode, email, phoneNumber);
     }
 }
