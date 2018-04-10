@@ -1,5 +1,6 @@
 package lv.myProject.java2.Configs;
 
+import javafx.fxml.FXMLLoader;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,6 +23,7 @@ import java.util.Properties;
 @PropertySource("classpath:database.properties")
 @EnableTransactionManagement
 public class SpringAppConfig {
+
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {

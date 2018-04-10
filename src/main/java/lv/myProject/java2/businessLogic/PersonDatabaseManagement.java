@@ -41,8 +41,8 @@ public class PersonDatabaseManagement implements ManagePersons{
 
 
     @Override
-
     public void addPerson(Person1 person) {
+        System.out.println("aadd");
         session().save(person);
     }
 /*    public void addPerson(Person1 person) throws SQLException {
