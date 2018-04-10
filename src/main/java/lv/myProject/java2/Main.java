@@ -1,52 +1,62 @@
 package lv.myProject.java2;
 
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import lv.myProject.java2.Configs.SpringAppConfig;
-import lv.myProject.java2.fxmlViewControllers.MainWindowController;
+import lv.myProject.java2.ViewControllers.ManagePersons;
+import lv.myProject.java2.businessLogic.*;
+import lv.myProject.java2.businessLogic.AddPerson.AddPerson;
+import lv.myProject.java2.businessLogic.RemovePerson.RemovePerson;
+import lv.myProject.java2.businessLogic.ShowAll.ShowAllPerson;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
-public class Main extends Application {
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-
-        //ApplicationContext applicationContext
-            //    = new AnnotationConfigApplicationContext(SpringAppConfig.class);
-       // SpringFxmlLoader loader = new SpringFxmlLoader();
-
-        ApplicationContext applicationContext
-       = new AnnotationConfigApplicationContext(SpringAppConfig.class);
-
-        applicationContext.getBean(MainWindowController.class);
-        FXMLLoader loader = new FXMLLoader();
-        loader.setControllerFactory(applicationContext::getBean);
-
-        try {
-           // Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-            Parent root = loader.load(getClass().getResource("/fxmlViews/MainWindow.fxml"));
-            primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.setScene(new Scene(root));
-            primaryStage.setResizable(true);
-            primaryStage.show();
-            System.out.println("starting...");
+public class Main  {
 
 
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
+
     public static void main(String[] args) {
-        launch(args);
 
-    }
+            // Use cases:
+            // 1. Add product to list
+            // 2. Remove product from list
+            // 3. Print shopping list to console
+            // 4. Exit
+
+            ApplicationContext applicationContext
+                    = new AnnotationConfigApplicationContext(SpringAppConfig.class);
+
+            Map<Integer,ManagePersons> actionMap = new HashMap<>();
+            actionMap.put(1, applicationContext.getBean(AddPerson.class));
+            actionMap.put(2, applicationContext.getBean(RemovePerson.class));
+            actionMap.put(3, applicationContext.getBean(ShowAllPerson.class));
+            actionMap.put(4, applicationContext.getBean(ProgrammExit.class));
+
+            while (true) {
+                printProgramMenu();
+                int menuItem = getFromUserMenuItemToExecute();
+                ManagePersons view = actionMap.get(menuItem);
+                view.execute();
+            }
+
+        }
+
+        private static void printProgramMenu() {
+            System.out.println("Program Menu:\n");
+            System.out.println("1. Add product to list");
+            System.out.println("2. Remove product from list");
+            System.out.println("3. Print list to console");
+            System.out.println("4. Exit");
+        }
+
+        private static int getFromUserMenuItemToExecute() {
+            System.out.print("Please enter menu item number to execute:");
+            Scanner sc = new Scanner(System.in);
+            return Integer.parseInt(sc.nextLine());
+        }
 }

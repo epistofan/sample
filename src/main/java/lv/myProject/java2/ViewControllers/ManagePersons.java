@@ -1,4 +1,4 @@
-package lv.myProject.java2.businessLogic;
+package lv.myProject.java2.ViewControllers;
 
 import javafx.collections.ObservableList;
 import lv.myProject.java2.Domain.Person;
@@ -12,10 +12,7 @@ public interface ManagePersons {
 
 
 
-    void addPerson(Person1 person) throws SQLException;
-    void removePerson();
-    ObservableList<Person1> showAll();
-    Optional<Person> findPerson();
+    void execute();
 
 
 }
