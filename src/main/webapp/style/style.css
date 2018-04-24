@@ -1,0 +1,50 @@
+body {
+    background-color: lightblue;
+}
+
+h1 {
+    color: white;
+    text-align: right;
+    margin-left: 20px;
+
+}
+p {
+    border-style: solid;
+    border-width: 1px;
+}
+.button {
+    background-color: #4CAF50; /* Green */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: LightGray;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+.center {
+    margin: auto;
+    width: 30%;
+
+    padding: 10px;
+}
+div {
+    background-color: lightgreen;
+}
