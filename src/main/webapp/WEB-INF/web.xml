@@ -9,9 +9,18 @@
                 <servlet-name>Servlets</servlet-name>
                 <servlet-class>lv.myProject.java2.servlets.Servlets</servlet-class>
             </servlet>
-           <!-- <servlet-mapping>
+            <servlet-mapping>
                 <servlet-name>Servlets</servlet-name>
-                <url-pattern>/hello</url-pattern>
-            </servlet-mapping>-->
+                <url-pattern>/Servlets</url-pattern>
+            </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Hello</servlet-name>
+        <servlet-class>lv.myProject.java2.servlets.Servlets</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Hello</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
 
 </web-app>
