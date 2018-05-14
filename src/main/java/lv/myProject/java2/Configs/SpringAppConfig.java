@@ -1,6 +1,6 @@
 package lv.myProject.java2.Configs;
 
-import javafx.fxml.FXMLLoader;
+
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;

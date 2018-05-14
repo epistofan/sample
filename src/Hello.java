@@ -5,22 +5,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-public class Servlets extends HttpServlet {
+public class Hello extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp) throws ServletException, IOException {
 
-        /*req.getRequestDispatcher("servlets/hello.jsp").forward(req, resp);*/
+        /*req.getRequestDispatcher("servlets/helloWorld.jsp").forward(req, resp);*/
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("web/index.html");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("webapp/helloWorld.jsp");
         requestDispatcher.forward(req, resp);
 
-       /* String param1 = req.getParameter("param1");*/
+        /* String param1 = req.getParameter("param1");*/
 
         /*HttpSession session = req.getSession();
         session.setAttribute("ĀttrName", 1L);*/
