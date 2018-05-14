@@ -21,12 +21,18 @@ public class HelloWorldController {
     @Autowired
     private AddPersonService addPersonService;
 
-    @RequestMapping(value = "/login", method = {RequestMethod.GET})
+    @RequestMapping(value = "/*", method = {RequestMethod.GET})
     public String home() {
 
         return "helloWorld";
     }
 
+
+    @RequestMapping(value = "/checkUser", method = {RequestMethod.POST})
+    public String checkUser() {
+
+        return "mainPage";
+    }
     /*@RequestMapping(value = "hello", method = {RequestMethod.GET})
     public ModelAndView process(HttpServletRequest request) {
 

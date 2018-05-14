@@ -17,7 +17,7 @@
 	  <label>Username</label>
 	  <input type="text" tabindex="1" placeholder="PremiumPixel" required>
 	  <label><a href="#" class="rLink" tabindex="5">Forget your password?</a>Password</label>
-	  <input type="password" tabindex="2" placeholder="Password" required>
+	  <input type="password" tabindex="2" placeholder="your password" required>
 	</fieldset>
 	<footer>
 	  <label><input type="checkbox" tabindex="3">Keep me logged in</label>
