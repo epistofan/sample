@@ -30,7 +30,6 @@ public class HelloWorldController {
 
     @RequestMapping(value = "/checkUser", method = {RequestMethod.POST})
     public String checkUser() {
-
         return "mainPage";
     }
     /*@RequestMapping(value = "hello", method = {RequestMethod.GET})
