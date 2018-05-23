@@ -1,13 +1,9 @@
-package lv.myProject.java2;
-
-
-import lv.myProject.java2.Configs.SpringAppConfig;
-import lv.myProject.java2.ViewControllers.AddPersonController;
-import lv.myProject.java2.ViewControllers.ManagePersons;
-import lv.myProject.java2.businessLogic.*;
-import lv.myProject.java2.businessLogic.AddPerson.AddPerson;
-import lv.myProject.java2.businessLogic.RemovePerson.RemovePerson;
-import lv.myProject.java2.businessLogic.ShowAll.ShowAllPerson;
+import lv.myProject.java2.App.Configs.SpringAppConfig;
+import lv.myProject.java2.App.ProgrammExit;
+import lv.myProject.java2.App.ViewControllers.AddPersonController;
+import lv.myProject.java2.App.ViewControllers.ManagePersons;
+import lv.myProject.java2.App.RemovePerson.RemovePerson;
+import lv.myProject.java2.App.ShowAll.ShowAllPerson;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

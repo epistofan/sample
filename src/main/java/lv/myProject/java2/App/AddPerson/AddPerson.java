@@ -1,15 +1,7 @@
-package lv.myProject.java2.businessLogic.AddPerson;
+package lv.myProject.java2.App.AddPerson;
 
 
-import lv.myProject.java2.Domain.Person;
-
-import lv.myProject.java2.ViewControllers.ManagePersons;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.transaction.Transactional;
 
 @Component
 public class AddPerson {
@@ -17,9 +9,10 @@ public class AddPerson {
     String lastName;
     String phoneNumber;
     String returnedText;
-
-    @Autowired
-    private SessionFactory sessionFactory;
+ public void test(){
+    System.out.println("test");
+}
+   /*
     private Session session() {
         return sessionFactory.getCurrentSession();
     }
@@ -31,7 +24,7 @@ public class AddPerson {
         session().save(person);
 
 
-}
+}*/
 
 
 

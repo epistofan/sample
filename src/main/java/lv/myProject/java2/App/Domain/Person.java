@@ -1,4 +1,4 @@
-package lv.myProject.java2.Domain;
+package lv.myProject.java2.App.Domain;
 
 
 import javax.persistence.*;

@@ -1,10 +1,10 @@
-package lv.myProject.java2.ViewControllers;
+package lv.myProject.java2.App.ViewControllers;
 
 
 
-import lv.myProject.java2.Domain.Person;
+import lv.myProject.java2.App.Domain.Person;
 
-import lv.myProject.java2.businessLogic.AddPerson.AddPerson;
+import lv.myProject.java2.App.AddPerson.AddPerson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +23,6 @@ public class AddPersonController implements ManagePersons {
         person.setLastName("dcsdcsdcsdcsc");
         person.setPersonCode("dewdwedwedwed434534");
         person.setPhoneNumber("3454543");
-        addPerson.addPerson(person);
+        //addPerson.addPerson(person);
     }
 }

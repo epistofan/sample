@@ -1,4 +1,4 @@
-package lv.myProject.java2.Configs;
+package lv.myProject.java2.App.Configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"lv.myProject.java2"})
+@ComponentScan(basePackages = {"lv.myProject.java2.App.Web"})
 public class WebMVCConfig extends WebMvcConfigurerAdapter {
 
 

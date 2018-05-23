@@ -1,7 +1,7 @@
-package lv.myProject.java2.businessLogic.ShowAll;
+package lv.myProject.java2.App.ShowAll;
 
 
-import lv.myProject.java2.ViewControllers.ManagePersons;
+import lv.myProject.java2.App.ViewControllers.ManagePersons;
 import org.springframework.stereotype.Component;
 
 @Component

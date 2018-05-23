@@ -1,4 +1,4 @@
-package lv.myProject.java2.Configs;
+package lv.myProject.java2.App.Configs;
 
 
 import org.apache.commons.dbcp.BasicDataSource;
@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = {"lv.myProject.java2"})
+@ComponentScan(basePackages = {"lv.myProject.java2.App"})
 @PropertySource("classpath:database.properties")
 @EnableTransactionManagement
 public class SpringAppConfig {

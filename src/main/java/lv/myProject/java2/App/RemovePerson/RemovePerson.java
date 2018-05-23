@@ -1,7 +1,7 @@
-package lv.myProject.java2.businessLogic.RemovePerson;
+package lv.myProject.java2.App.RemovePerson;
 
 
-import lv.myProject.java2.ViewControllers.ManagePersons;
+import lv.myProject.java2.App.ViewControllers.ManagePersons;
 import org.springframework.stereotype.Component;
 
 @Component

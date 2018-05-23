@@ -1,4 +1,4 @@
-package lv.myProject.java2.Configs;
+package lv.myProject.java2.App.Configs;
 
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
