@@ -1,5 +1,6 @@
 package lv.myProject.java2.App.Configs;
 
+import org.hibernate.Session;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
@@ -11,7 +12,9 @@ public class SpringWebMvcInitializer extends AbstractDispatcherServletInitialize
         AnnotationConfigWebApplicationContext applicationContext =
                 new AnnotationConfigWebApplicationContext();
         applicationContext.register(SpringAppConfig.class);
+
         return applicationContext;
+
     }
 
     @Override

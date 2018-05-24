@@ -1,4 +1,4 @@
-package lv.myProject.java2.App;
+package lv.myProject.java2.App.businessLogic;
 
 
 import lv.myProject.java2.App.ViewControllers.ManagePersons;

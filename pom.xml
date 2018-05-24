@@ -7,11 +7,6 @@
     <groupId>myProjectJava2</groupId>
     <artifactId>myProject</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Maven war ::  example</name>
-    <url>http://maven.apache.org</url>
-
-
-
 
 
     <properties>

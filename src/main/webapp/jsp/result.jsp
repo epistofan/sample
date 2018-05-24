@@ -5,19 +5,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Simple Login Form</title>
+<title>result</title>
 
 
-<link rel="stylesheet" type="text/css" href="resources/reset.css">
-<link rel="stylesheet" type="text/css" href="resources/structure.css">
+
 </head>
 
 <body>
 
-<h1>${userName}<h2>
-<h1>${userPassword}<h2>
 
+<center><h1 style="font-size:60px;">${userName}<h2></center>
+<center><h1>${userPassword}<h2></center>
 
+<center><img src="ded.jpg" alt="Cool"></center>
 
 
 </body>

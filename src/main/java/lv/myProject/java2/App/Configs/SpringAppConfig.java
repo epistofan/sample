@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = {"lv.myProject.java2.App"})
+@ComponentScan(basePackages = {"lv.myProject.java2"})
 @PropertySource("classpath:database.properties")
 @EnableTransactionManagement
 public class SpringAppConfig {

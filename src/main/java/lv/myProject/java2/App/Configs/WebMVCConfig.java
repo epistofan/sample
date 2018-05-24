@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"lv.myProject.java2.App.Web"})
+@ComponentScan(basePackages = {"lv.myProject.java2"})
 public class WebMVCConfig extends WebMvcConfigurerAdapter {
 
 
