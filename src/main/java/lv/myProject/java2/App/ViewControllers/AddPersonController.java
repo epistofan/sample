@@ -4,7 +4,7 @@ package lv.myProject.java2.App.ViewControllers;
 
 import lv.myProject.java2.App.Domain.Person;
 
-import lv.myProject.java2.App.AddPerson.AddPerson;
+import lv.myProject.java2.App.Services.AddPerson.AddPerson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

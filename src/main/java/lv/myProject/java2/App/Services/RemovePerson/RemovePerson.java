@@ -1,4 +1,4 @@
-package lv.myProject.java2.App.RemovePerson;
+package lv.myProject.java2.App.Services.RemovePerson;
 
 
 import lv.myProject.java2.App.ViewControllers.ManagePersons;

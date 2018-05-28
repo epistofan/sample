@@ -13,12 +13,12 @@
 
 <body>
 
+<center><h1 style="font-size:40px;">Success!<h2></center>
+<center><h1 style="font-size:40px;">privet, ${userName}<h2></center>
+<center><h1>your pass is: ${userPassword}<h2></center>
 
-<center><h1 style="font-size:60px;">${userName}<h2></center>
-<center><h1>${userPassword}<h2></center>
+<center><img src="resources/ded.jpg" alt="Cool"></center>
 
-<center><img src="ded.jpg" alt="Cool"></center>
-
-
+<center><h1>toworkshop<h2></center>
 </body>
 </html>

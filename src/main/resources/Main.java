@@ -2,8 +2,8 @@ import lv.myProject.java2.App.Configs.SpringAppConfig;
 import lv.myProject.java2.App.ProgrammExit;
 import lv.myProject.java2.App.ViewControllers.AddPersonController;
 import lv.myProject.java2.App.ViewControllers.ManagePersons;
-import lv.myProject.java2.App.RemovePerson.RemovePerson;
-import lv.myProject.java2.App.ShowAll.ShowAllPerson;
+import lv.myProject.java2.App.Services.RemovePerson.RemovePerson;
+import lv.myProject.java2.App.Services.ShowAll.ShowAllPerson;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

@@ -1,16 +1,11 @@
-package lv.myProject.java2.App.Web;
+package lv.myProject.java2.App.businessLogic;
 
-import lv.myProject.java2.App.AddPerson.AddUserService;
+import lv.myProject.java2.App.Services.AddPerson.AddUserService;
 import lv.myProject.java2.App.Domain.User;
-import lv.myProject.java2.App.AddPerson.AddPerson;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Component
 public class UserRegistrationValidator{
@@ -21,9 +16,13 @@ public class UserRegistrationValidator{
 
     @Transactional
      public boolean validate(User user){
-
-            addUserService.validate(user);
-
+        if(user.getUserName().equals(addUserService.validate(user))){
             return true;
+        }else{
+            return false;
+        }
+
+
+
      }
 }

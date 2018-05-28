@@ -13,6 +13,9 @@
 </head>
 
 <body>
+<center><h1>${msg}<h2></center>
+<br>
+<center><h1>${failMessage}<h2></center>
 
 
         <form:form method="POST" action="/myProject/checkUser" modelAttribute="user" class="box login">

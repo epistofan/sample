@@ -1,4 +1,4 @@
-package lv.myProject.java2.App.AddPerson;
+package lv.myProject.java2.App.Services.AddPerson;
 
 import lv.myProject.java2.App.Domain.User;
 import org.hibernate.Query;
@@ -15,6 +15,9 @@ public class AddUserService {
     @Autowired
     SessionFactory sessionFactory;
 
+    String userN;
+    String userP;
+
     private Session session() {
         return sessionFactory.getCurrentSession();
     }
@@ -28,12 +31,22 @@ public class AddUserService {
         Query query = session().createQuery(hql);
         query.setParameter("userName", userName);
 
-        List<User>results = query.list();
+        List<User> results = query.list();
         System.out.println(results);
-        results.forEach(result -> System.out.println(user.getUserName()));
+        for(User user1:results) {
 
-        return user.getUserName();
+            System.out.println(user1);
+            userN = user1.getUserName();
+            userP = user1.getUserName();
+        }
+
+
+
+            return userN;
+        }
+
+
     }
 
 
-}
+

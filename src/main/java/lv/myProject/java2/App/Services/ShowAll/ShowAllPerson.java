@@ -1,4 +1,4 @@
-package lv.myProject.java2.App.ShowAll;
+package lv.myProject.java2.App.Services.ShowAll;
 
 
 import lv.myProject.java2.App.ViewControllers.ManagePersons;

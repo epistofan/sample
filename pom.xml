@@ -27,7 +27,7 @@
     </repositories>
 
     <dependencies>
-        <!-- Database connection pool -->
+        <!-- DatabaseDAO connection pool -->
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>

@@ -1,4 +1,4 @@
-package lv.myProject.java2.App.AddPerson;
+package lv.myProject.java2.App.Services.AddPerson;
 
 import org.springframework.stereotype.Component;
 
